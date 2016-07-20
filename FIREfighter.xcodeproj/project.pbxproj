@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A12F0AA1D3D54CA0009DE27 /* baby.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A12F0A91D3D54CA0009DE27 /* baby.sks */; };
+		4A15519B1D394D0C00F636FF /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A15519A1D394D0C00F636FF /* CGFloat+Extensions.swift */; };
+		4A15519D1D394E5800F636FF /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A15519C1D394E5800F636FF /* MSButtonNode.swift */; };
 		4AB4FA5B1D2425F0006E6632 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4FA5A1D2425F0006E6632 /* AppDelegate.swift */; };
 		4AB4FA5D1D2425F0006E6632 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AB4FA5C1D2425F0006E6632 /* GameScene.sks */; };
 		4AB4FA5F1D2425F0006E6632 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4FA5E1D2425F0006E6632 /* GameScene.swift */; };
@@ -16,6 +19,18 @@
 		4AB4FA691D2425F0006E6632 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AB4FA671D2425F0006E6632 /* LaunchScreen.storyboard */; };
 		4AB4FA741D2425F0006E6632 /* FIREfighterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4FA731D2425F0006E6632 /* FIREfighterTests.swift */; };
 		4AB4FA7F1D2425F0006E6632 /* FIREfighterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4FA7E1D2425F0006E6632 /* FIREfighterUITests.swift */; };
+		4AB4FA8D1D245389006E6632 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4FA8C1D245389006E6632 /* MainMenuScene.swift */; };
+		4AB4FA8F1D2453C5006E6632 /* MainMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AB4FA8E1D2453C5006E6632 /* MainMenuScene.sks */; };
+		4AFD887D1D3924A200247CED /* variableWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD887C1D3924A200247CED /* variableWall.sks */; };
+		4AFD88801D392B7C00247CED /* twoMidCB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD887F1D392B7C00247CED /* twoMidCB.sks */; };
+		4AFD88821D392C8600247CED /* twoEndCB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD88811D392C8600247CED /* twoEndCB.sks */; };
+		4AFD88841D392D3400247CED /* rightEndWallCB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD88831D392D3400247CED /* rightEndWallCB.sks */; };
+		4AFD88861D392D9300247CED /* leftEndWallCB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD88851D392D9300247CED /* leftEndWallCB.sks */; };
+		4AFD88891D392E2200247CED /* OneCO.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD88881D392E2200247CED /* OneCO.sks */; };
+		4AFD888B1D392EBD00247CED /* threeMidCO.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD888A1D392EBD00247CED /* threeMidCO.sks */; };
+		4AFD888D1D392F7300247CED /* threeEndCO.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD888C1D392F7300247CED /* threeEndCO.sks */; };
+		4AFD888F1D392FFD00247CED /* twoLMidCO.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD888E1D392FFD00247CED /* twoLMidCO.sks */; };
+		4AFD88911D39304F00247CED /* twoRMidCO.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD88901D39304F00247CED /* twoRMidCO.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A12F0A91D3D54CA0009DE27 /* baby.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = baby.sks; sourceTree = "<group>"; };
+		4A15519A1D394D0C00F636FF /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
+		4A15519C1D394E5800F636FF /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		4AB4FA571D2425F0006E6632 /* FIREfighter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FIREfighter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB4FA5A1D2425F0006E6632 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AB4FA5C1D2425F0006E6632 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -51,6 +69,18 @@
 		4AB4FA7A1D2425F0006E6632 /* FIREfighterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FIREfighterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB4FA7E1D2425F0006E6632 /* FIREfighterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIREfighterUITests.swift; sourceTree = "<group>"; };
 		4AB4FA801D2425F0006E6632 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4AB4FA8C1D245389006E6632 /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		4AB4FA8E1D2453C5006E6632 /* MainMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenuScene.sks; sourceTree = "<group>"; };
+		4AFD887C1D3924A200247CED /* variableWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = variableWall.sks; sourceTree = "<group>"; };
+		4AFD887F1D392B7C00247CED /* twoMidCB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = twoMidCB.sks; sourceTree = "<group>"; };
+		4AFD88811D392C8600247CED /* twoEndCB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = twoEndCB.sks; sourceTree = "<group>"; };
+		4AFD88831D392D3400247CED /* rightEndWallCB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = rightEndWallCB.sks; sourceTree = "<group>"; };
+		4AFD88851D392D9300247CED /* leftEndWallCB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = leftEndWallCB.sks; sourceTree = "<group>"; };
+		4AFD88881D392E2200247CED /* OneCO.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = OneCO.sks; sourceTree = "<group>"; };
+		4AFD888A1D392EBD00247CED /* threeMidCO.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = threeMidCO.sks; sourceTree = "<group>"; };
+		4AFD888C1D392F7300247CED /* threeEndCO.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = threeEndCO.sks; sourceTree = "<group>"; };
+		4AFD888E1D392FFD00247CED /* twoLMidCO.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = twoLMidCO.sks; sourceTree = "<group>"; };
+		4AFD88901D39304F00247CED /* twoRMidCO.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = twoRMidCO.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +132,16 @@
 			isa = PBXGroup;
 			children = (
 				4AB4FA5A1D2425F0006E6632 /* AppDelegate.swift */,
-				4AB4FA5C1D2425F0006E6632 /* GameScene.sks */,
+				4AB4FA8E1D2453C5006E6632 /* MainMenuScene.sks */,
+				4AB4FA8C1D245389006E6632 /* MainMenuScene.swift */,
+				4A15519C1D394E5800F636FF /* MSButtonNode.swift */,
 				4AB4FA5E1D2425F0006E6632 /* GameScene.swift */,
+				4AB4FA5C1D2425F0006E6632 /* GameScene.sks */,
+				4A12F0A91D3D54CA0009DE27 /* baby.sks */,
+				4AFD887C1D3924A200247CED /* variableWall.sks */,
+				4AFD887E1D392B1600247CED /* CenterBlockedWalls */,
+				4AFD88871D392DED00247CED /* CenterOpenWalls */,
+				4A15519A1D394D0C00F636FF /* CGFloat+Extensions.swift */,
 				4AB4FA601D2425F0006E6632 /* GameViewController.swift */,
 				4AB4FA621D2425F0006E6632 /* Main.storyboard */,
 				4AB4FA651D2425F0006E6632 /* Assets.xcassets */,
@@ -129,6 +167,29 @@
 				4AB4FA801D2425F0006E6632 /* Info.plist */,
 			);
 			path = FIREfighterUITests;
+			sourceTree = "<group>";
+		};
+		4AFD887E1D392B1600247CED /* CenterBlockedWalls */ = {
+			isa = PBXGroup;
+			children = (
+				4AFD887F1D392B7C00247CED /* twoMidCB.sks */,
+				4AFD88811D392C8600247CED /* twoEndCB.sks */,
+				4AFD88831D392D3400247CED /* rightEndWallCB.sks */,
+				4AFD88851D392D9300247CED /* leftEndWallCB.sks */,
+			);
+			name = CenterBlockedWalls;
+			sourceTree = "<group>";
+		};
+		4AFD88871D392DED00247CED /* CenterOpenWalls */ = {
+			isa = PBXGroup;
+			children = (
+				4AFD88881D392E2200247CED /* OneCO.sks */,
+				4AFD888A1D392EBD00247CED /* threeMidCO.sks */,
+				4AFD888C1D392F7300247CED /* threeEndCO.sks */,
+				4AFD888E1D392FFD00247CED /* twoLMidCO.sks */,
+				4AFD88901D39304F00247CED /* twoRMidCO.sks */,
+			);
+			name = CenterOpenWalls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +260,7 @@
 				TargetAttributes = {
 					4AB4FA561D2425F0006E6632 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 289SSXP96T;
 					};
 					4AB4FA6E1D2425F0006E6632 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -235,10 +297,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AFD88911D39304F00247CED /* twoRMidCO.sks in Resources */,
+				4AFD888B1D392EBD00247CED /* threeMidCO.sks in Resources */,
+				4AFD888F1D392FFD00247CED /* twoLMidCO.sks in Resources */,
 				4AB4FA5D1D2425F0006E6632 /* GameScene.sks in Resources */,
+				4AFD888D1D392F7300247CED /* threeEndCO.sks in Resources */,
+				4A12F0AA1D3D54CA0009DE27 /* baby.sks in Resources */,
+				4AFD88861D392D9300247CED /* leftEndWallCB.sks in Resources */,
+				4AFD88821D392C8600247CED /* twoEndCB.sks in Resources */,
+				4AFD88891D392E2200247CED /* OneCO.sks in Resources */,
+				4AFD88801D392B7C00247CED /* twoMidCB.sks in Resources */,
 				4AB4FA691D2425F0006E6632 /* LaunchScreen.storyboard in Resources */,
 				4AB4FA661D2425F0006E6632 /* Assets.xcassets in Resources */,
+				4AFD88841D392D3400247CED /* rightEndWallCB.sks in Resources */,
 				4AB4FA641D2425F0006E6632 /* Main.storyboard in Resources */,
+				4AB4FA8F1D2453C5006E6632 /* MainMenuScene.sks in Resources */,
+				4AFD887D1D3924A200247CED /* variableWall.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,8 +338,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AB4FA5F1D2425F0006E6632 /* GameScene.swift in Sources */,
+				4A15519B1D394D0C00F636FF /* CGFloat+Extensions.swift in Sources */,
 				4AB4FA611D2425F0006E6632 /* GameViewController.swift in Sources */,
+				4A15519D1D394E5800F636FF /* MSButtonNode.swift in Sources */,
 				4AB4FA5B1D2425F0006E6632 /* AppDelegate.swift in Sources */,
+				4AB4FA8D1D245389006E6632 /* MainMenuScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,10 +486,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FIREfighter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.GarbageGames.FIREfighter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -420,10 +500,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FIREfighter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.GarbageGames.FIREfighter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -494,6 +577,7 @@
 				4AB4FA851D2425F0006E6632 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4AB4FA861D2425F0006E6632 /* Build configuration list for PBXNativeTarget "FIREfighterTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +586,7 @@
 				4AB4FA881D2425F0006E6632 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4AB4FA891D2425F0006E6632 /* Build configuration list for PBXNativeTarget "FIREfighterUITests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +595,7 @@
 				4AB4FA8B1D2425F0006E6632 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
