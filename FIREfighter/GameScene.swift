@@ -31,24 +31,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var sinceTouch: CFTimeInterval = 0
     var spawnTimer: CFTimeInterval = 0
     let fixedDelta: CFTimeInterval = 1.0/60.0 //60 fps
-    let scrollSpeed: CGFloat = 200
+    let scrollSpeed: CGFloat = 160
     
     
     
     override func didMoveToView(view: SKView) {
+        //cage the scene
+        super.didMoveToView(view)
+        let borderBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
+        borderBody.friction = 0
+        self.physicsBody = borderBody
+        
+        
         //load hero
         
         hero = self.childNodeWithName("//hero") as! SKSpriteNode
+        hero.physicsBody?.applyImpulse(CGVectorMake(0.0, 50.0))
+        
         scrollLayer = self.childNodeWithName("scrollLayer")
         physicsWorld.contactDelegate = self
         pauseButton = self.childNodeWithName("pauseButton") as! MSButtonNode
         scoreLabel = self.childNodeWithName("scoreLabel") as! SKLabelNode
         playButton = self.childNodeWithName("playButton") as! MSButtonNode
         replayButton = self.childNodeWithName("replayButton") as! MSButtonNode
+        //self.gameState = .Pause
+        self.pauseButton.state = .Hidden
         
         //play button action
         playButton.selectedHandler = {
-            
+            self.gameState = .Active
             /* Grab reference to our SpriteKit view */
             let skView = self.view as SKView!
             
@@ -60,9 +71,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             /* Restart game scene */
             skView.presentScene(scene)
-            
+            self.playButton.state = .Hidden
+            self.pauseButton.state = .Active
         }
-        playButton.state = .Hidden
+        //playButton.state = .Hidden
         
         replayButton.hidden = true
         
@@ -83,6 +95,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     }
     
+    
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         /* Disable touch if game state is not active */
@@ -92,20 +106,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         /* Called when a touch begins */
         
-        for touch in touches {
-            /* Get touch position in scene */
-            let location = touch.locationInNode(self)
-            
-
-            hero.runAction(SKAction.moveToX(location.x, duration: 0.2))//, withKey: "moveAction")
-        }
     }
    
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         /* Disable touch if game state is not active */
         if gameState != .Active { return }
-        
+        //let moveAction = "moveAction"
         hero.physicsBody?.velocity = CGVectorMake(0, 0)
         
         /* Called when a touch moves */
@@ -113,7 +120,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for touch in touches {
             /* Get touch position in scene */
             let location = touch.locationInNode(self)
-
+//            //move right
+//            if location.x >= 160 {
+//                hero.physicsBody?.applyImpulse(CGVector(dx: 50, dy: 0))
+//            }
+//            //move left
+//            else if location.x <= 159 {
+//                self.hero.physicsBody?.applyImpulse(CGVector(dx: -50, dy: 0))
+//            }
             hero.runAction(SKAction.moveToX(location.x, duration: 0.2))//, withKey: "moveAction")
         }
     }
@@ -124,12 +138,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if gameState != .Active { return }
         
         hero.physicsBody?.velocity = CGVectorMake(0, 0)
+//        for touch in touches {
+//            /* Get touch position in scene */
+//            let location = touch.locationInNode(self)
         
+            //move right
+//            if location.x >= 160 {
+//                hero.physicsBody?.applyImpulse(CGVector(dx: -50, dy: 0))
+//            }
+//                //move left
+//            else if location.x <= 159 {
+//                self.hero.physicsBody?.applyImpulse(CGVector(dx: 50, dy: 0))
+           // }
         //hero.removeActionForKey("moveAction")
         
         /* Called when a touch ends */
         
-
+        //}
     }
     
     override func update(currentTime: CFTimeInterval) {
@@ -182,7 +207,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let obstaclePosition = obstacleLayer.convertPoint(obstacle.position, toNode: self)
             
             /* Check if obstacle has left the scene */
-            if obstaclePosition.y <= -10 {
+            if obstaclePosition.y <= -20 {
                 
                 /* Remove obstacle node from obstacle layer */
                 obstacle.removeFromParent()
@@ -190,7 +215,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         /* Time to add a new obstacle? */
-        if spawnTimer >= 1.0 {
+        if spawnTimer >= 1.5 {
             
             /* Create a new obstacle reference object using a resource path*/
             let resourcePath = NSBundle.mainBundle().pathForResource("variableWall", ofType: "sks")
@@ -198,7 +223,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             obstacleLayer.addChild(newObstacle)
             
             /* Generate new obstacle position, start just outside screen and with a random x value */
-            let randomPosition = CGPointMake( CGFloat.random(min: -140, max: 140), 568)
+            let randomPosition = CGPointMake( CGFloat.random(min: -260, max: 60), 568)
             
             /* Convert new node position back to obstacle layer space */
             newObstacle.position = self.convertPoint(randomPosition, toNode: obstacleLayer)
@@ -220,7 +245,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let nodeB = contactB.node!
         
         /* Did our hero pass through the 'goal'? */
-        if nodeA.name == "goal" || nodeB.name == "goal" {
+        if nodeA.name == "goal" && nodeB.name == "hero" || nodeB.name == "goal" && nodeA.name == "hero" {
             
             /* Increment points */
             points += 1
@@ -237,11 +262,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         /* Change game state to game over */
-       // gameState = .GameOver
-        
-
-        
-        hero.removeAllActions()
+        //gameState = .GameOver
+        //hero.removeAllActions()
         
         /* Show restart button */
         //playButton.state = .Active

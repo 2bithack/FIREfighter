@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "leftWall.png",
+      "filename" : "halfWall.png",
       "scale" : "1x"
     },
     {

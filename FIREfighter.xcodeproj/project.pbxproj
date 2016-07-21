@@ -26,7 +26,6 @@
 		4AFD88821D392C8600247CED /* twoEndCB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD88811D392C8600247CED /* twoEndCB.sks */; };
 		4AFD88841D392D3400247CED /* rightEndWallCB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD88831D392D3400247CED /* rightEndWallCB.sks */; };
 		4AFD88861D392D9300247CED /* leftEndWallCB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD88851D392D9300247CED /* leftEndWallCB.sks */; };
-		4AFD88891D392E2200247CED /* OneCO.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD88881D392E2200247CED /* OneCO.sks */; };
 		4AFD888B1D392EBD00247CED /* threeMidCO.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD888A1D392EBD00247CED /* threeMidCO.sks */; };
 		4AFD888D1D392F7300247CED /* threeEndCO.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD888C1D392F7300247CED /* threeEndCO.sks */; };
 		4AFD888F1D392FFD00247CED /* twoLMidCO.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD888E1D392FFD00247CED /* twoLMidCO.sks */; };
@@ -76,7 +75,6 @@
 		4AFD88811D392C8600247CED /* twoEndCB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = twoEndCB.sks; sourceTree = "<group>"; };
 		4AFD88831D392D3400247CED /* rightEndWallCB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = rightEndWallCB.sks; sourceTree = "<group>"; };
 		4AFD88851D392D9300247CED /* leftEndWallCB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = leftEndWallCB.sks; sourceTree = "<group>"; };
-		4AFD88881D392E2200247CED /* OneCO.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = OneCO.sks; sourceTree = "<group>"; };
 		4AFD888A1D392EBD00247CED /* threeMidCO.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = threeMidCO.sks; sourceTree = "<group>"; };
 		4AFD888C1D392F7300247CED /* threeEndCO.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = threeEndCO.sks; sourceTree = "<group>"; };
 		4AFD888E1D392FFD00247CED /* twoLMidCO.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = twoLMidCO.sks; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 		4AFD88871D392DED00247CED /* CenterOpenWalls */ = {
 			isa = PBXGroup;
 			children = (
-				4AFD88881D392E2200247CED /* OneCO.sks */,
 				4AFD888A1D392EBD00247CED /* threeMidCO.sks */,
 				4AFD888C1D392F7300247CED /* threeEndCO.sks */,
 				4AFD888E1D392FFD00247CED /* twoLMidCO.sks */,
@@ -305,7 +302,6 @@
 				4A12F0AA1D3D54CA0009DE27 /* baby.sks in Resources */,
 				4AFD88861D392D9300247CED /* leftEndWallCB.sks in Resources */,
 				4AFD88821D392C8600247CED /* twoEndCB.sks in Resources */,
-				4AFD88891D392E2200247CED /* OneCO.sks in Resources */,
 				4AFD88801D392B7C00247CED /* twoMidCB.sks in Resources */,
 				4AB4FA691D2425F0006E6632 /* LaunchScreen.storyboard in Resources */,
 				4AB4FA661D2425F0006E6632 /* Assets.xcassets in Resources */,
