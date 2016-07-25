@@ -22,6 +22,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var woodFloor: SKSpriteNode!
     var scrollLayer: SKNode!
     var obstacleLayer: SKNode!
+    var variableLayer: SKNode!
+    
     var scoreLabel: SKLabelNode!
     var pauseButton: MSButtonNode!
     var playButton: MSButtonNode!
@@ -30,9 +32,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var points = 0
     var sinceTouch: CFTimeInterval = 0
     var spawnTimer: CFTimeInterval = 0
+    var fireTimer: CFTimeInterval = 0
+
+    
     let fixedDelta: CFTimeInterval = 1.0/60.0 //60 fps
     let scrollSpeed: CGFloat = 160
     
+
     
     
     override func didMoveToView(view: SKView) {
@@ -46,7 +52,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //load hero
         
         hero = self.childNodeWithName("//hero") as! SKSpriteNode
-        hero.physicsBody?.applyImpulse(CGVectorMake(0.0, 50.0))
+        
         
         scrollLayer = self.childNodeWithName("scrollLayer")
         physicsWorld.contactDelegate = self
@@ -103,9 +109,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if gameState != .Active { return }
         
         hero.physicsBody?.velocity = CGVectorMake(0, 0)
-        
+        hero.physicsBody?.applyForce(CGVectorMake(0.0, 5.0))
+
         /* Called when a touch begins */
-        
+        for touch in touches {
+            /* Get touch position in scene */
+            let location = touch.locationInNode(self)
+                //move right
+                if location.x >= hero.position.x {
+                    hero.runAction(SKAction.moveToX(310, duration: 0.6), withKey: "moveAction")
+                }
+                //move left
+                else {
+                    hero.runAction(SKAction.moveToX(10, duration: 0.6), withKey: "moveAction")
+                }
+        }
     }
    
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -117,19 +135,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         /* Called when a touch moves */
         
-        for touch in touches {
-            /* Get touch position in scene */
-            let location = touch.locationInNode(self)
+//        for touch in touches {
+//            /* Get touch position in scene */
+//            let location = touch.locationInNode(self)
 //            //move right
-//            if location.x >= 160 {
-//                hero.physicsBody?.applyImpulse(CGVector(dx: 50, dy: 0))
+//            if location.x >= hero.position.x {
+//                hero.runAction(SKAction.moveToX(320, duration: 0.5), withKey: "moveAction")
 //            }
-//            //move left
-//            else if location.x <= 159 {
-//                self.hero.physicsBody?.applyImpulse(CGVector(dx: -50, dy: 0))
+//                //move left
+//            else {
+//                hero.runAction(SKAction.moveToX(10, duration: 0.5), withKey: "moveAction")
 //            }
-            hero.runAction(SKAction.moveToX(location.x, duration: 0.2))//, withKey: "moveAction")
-        }
+//        }
+        
+//        for touch in touches {
+//            /* Get touch position in scene */
+//            let location = touch.locationInNode(self)
+//
+//            hero.runAction(SKAction.moveToX(location.x, duration: 0.5))//, withKey: "moveAction")
+//        }
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -138,36 +162,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if gameState != .Active { return }
         
         hero.physicsBody?.velocity = CGVectorMake(0, 0)
-//        for touch in touches {
-//            /* Get touch position in scene */
-//            let location = touch.locationInNode(self)
         
-            //move right
-//            if location.x >= 160 {
-//                hero.physicsBody?.applyImpulse(CGVector(dx: -50, dy: 0))
-//            }
-//                //move left
-//            else if location.x <= 159 {
-//                self.hero.physicsBody?.applyImpulse(CGVector(dx: 50, dy: 0))
-           // }
-        //hero.removeActionForKey("moveAction")
         
-        /* Called when a touch ends */
         
-        //}
+        // Called when a touch ends
+        
+        hero.removeActionForKey("moveAction")
+        
     }
     
     override func update(currentTime: CFTimeInterval) {
         
         /* Skip game update if game no longer active */
         if gameState != .Active { return }
-        
+        hero.physicsBody?.applyForce(CGVectorMake(0.0, 10.0))
+
         
         sinceTouch += fixedDelta
         
         scrollWorld()
         updateObstacles()
         spawnTimer+=fixedDelta
+        fireTimer+=fixedDelta
     }
     
     func scrollWorld(){
@@ -176,6 +192,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //obstacle scroll
         obstacleLayer = self.childNodeWithName("obstacleLayer")!
+        variableLayer = self.childNodeWithName("variableLayer")!
+        
         
         //loop scroll layer nodes
         for ground in scrollLayer.children as! [SKSpriteNode] {
@@ -196,9 +214,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func updateObstacles() {
-        /* Update Obstacles */
+
         
         obstacleLayer.position.y -= scrollSpeed * CGFloat(fixedDelta)
+        variableLayer.position.y -= scrollSpeed * CGFloat(fixedDelta)
         
         /* Loop through obstacle layer nodes */
         for obstacle in obstacleLayer.children as! [SKReferenceNode] {
@@ -214,24 +233,82 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         }
-        /* Time to add a new obstacle? */
-        if spawnTimer >= 1.5 {
+        
+        /* Loop through variable obstacle layer nodes */
+        for variableObstacle in variableLayer.children as! [SKReferenceNode] {
             
-            /* Create a new obstacle reference object using a resource path*/
-            let resourcePath = NSBundle.mainBundle().pathForResource("variableWall", ofType: "sks")
+            /* Get obstacle node position, convert node position to scene space */
+            let variablePosition = variableLayer.convertPoint(variableObstacle.position, toNode: self)
+            
+            /* Check if obstacle has left the scene */
+            if variablePosition.y <= -20 {
+                
+                /* Remove obstacle node from obstacle layer */
+                variableObstacle.removeFromParent()
+            }
+            
+        }
+        
+        /* Time to add a new obstacle? */
+        if spawnTimer >= 0.5 {
+            
+            /* Create an array of obstacles */
+            let filenames = ["twoMidCB", "twoEndCB", "rightEndWallCB", "leftEndWallCB", "threeMidCO", "threeEndCO", "twoLMidCO", "twoRMidCO", "variableWall2"]
+            
+            // represent the selected obstacle from array
+            let filename = filenames[random() % filenames.count]
+            
+            //set variable wall position
+            if filename == "variableWall2" {
+
+                let resourcePath = NSBundle.mainBundle().pathForResource(filename, ofType: "sks")
+                let randomPosition = CGPointMake( CGFloat.random(min: -270, max: 0), 568)
+                
+                let newObstacle = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
+
+                obstacleLayer.addChild(newObstacle)
+                newObstacle.position = self.convertPoint(randomPosition, toNode: variableLayer)
+                spawnTimer = 0
+            }
+            //send in the other walls
+            else {
+            let resourcePath = NSBundle.mainBundle().pathForResource(filename, ofType: "sks")
             let newObstacle = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
             obstacleLayer.addChild(newObstacle)
             
+            
             /* Generate new obstacle position, start just outside screen and with a random x value */
-            let randomPosition = CGPointMake( CGFloat.random(min: -260, max: 60), 568)
+            //let randomPosition = CGPointMake( CGFloat.random(min: -270, max: 0), 568)
             
             /* Convert new node position back to obstacle layer space */
-            newObstacle.position = self.convertPoint(randomPosition, toNode: obstacleLayer)
+            newObstacle.position = self.convertPoint(CGPoint(x: 0.0, y: 568.0), toNode: obstacleLayer)
             
+            //fireWall.position = self.convertPoint(randomPosition, toNode: variableLayer)
             
             // Reset spawn timer
             spawnTimer = 0
+                //add in moving firewalls every 5 walls
+                let randomFire = Float(arc4random_uniform(10) + 4) * 0.5
+                if Float(fireTimer) >= randomFire {
+                    let moveLeft = SKAction.moveToX(-270, duration: 0.6)
+                    let moveRight = SKAction.moveToX(270, duration: 0.6)
+                    
+                    let firePath = NSBundle.mainBundle().pathForResource("fireWall", ofType: "sks")
+                    let fireWall = SKReferenceNode (URL: NSURL (fileURLWithPath: firePath!))
+                    fireWall.runAction(SKAction.repeatActionForever(SKAction.sequence([moveLeft, moveRight])))
+
+                    variableLayer.addChild(fireWall)
+                    
+                    let randomPosition = CGPointMake( CGFloat.random(min: -270, max: 0), 568)
+                    fireWall.position = self.convertPoint(randomPosition, toNode: variableLayer)
+                    fireTimer = 0
+                    
+                }
+                
+            }
         }
+
+        
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -255,6 +332,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             /* We can return now */
             return
+        } else if nodeA.name == "kill" && nodeB.name == "hero" || nodeB.name == "kill" && nodeA.name == "hero" {
+            
+            /* Change game state to game over */
+            gameState = .GameOver
+            self.removeAllActions()
+            
+            let heroDeath = SKAction.runBlock({
+                
+                /* Put our hero face down in the dirt */
+                self.hero.zRotation = CGFloat(-90).degreesToRadians()
+                /* Stop hero from colliding with anything else */
+                self.hero.physicsBody?.collisionBitMask = 0
+                self.hero.removeAllActions()
+            })
+            
+            /* Run action */
+            hero.runAction(heroDeath)
+            
+            /* We can return now */
+            return
         }
         
         /* Ensure only called while game running */
@@ -269,16 +366,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //playButton.state = .Active
         
         /* Create our hero death action */
-//        let heroDeath = SKAction.runBlock({
-//            
-//            /* Put our hero face down in the dirt */
-//            self.hero.zRotation = CGFloat(-90).degreesToRadians()
-//            /* Stop hero from colliding with anything else */
-//            self.hero.physicsBody?.collisionBitMask = 0
-//        })
-//        
-//        /* Run action */
-//        hero.runAction(heroDeath)
+
         
 
         
