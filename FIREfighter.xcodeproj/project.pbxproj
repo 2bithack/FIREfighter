@@ -10,6 +10,8 @@
 		4A12F0AA1D3D54CA0009DE27 /* baby.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A12F0A91D3D54CA0009DE27 /* baby.sks */; };
 		4A15519B1D394D0C00F636FF /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A15519A1D394D0C00F636FF /* CGFloat+Extensions.swift */; };
 		4A15519D1D394E5800F636FF /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A15519C1D394E5800F636FF /* MSButtonNode.swift */; };
+		4A25894C1D46A5A7005AB87A /* GameEffects.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A25894B1D46A5A7005AB87A /* GameEffects.sks */; };
+		4A6103761D4811CC002294BE /* smokeParticleWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A6103751D4811CC002294BE /* smokeParticleWall.sks */; };
 		4AB4FA5B1D2425F0006E6632 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4FA5A1D2425F0006E6632 /* AppDelegate.swift */; };
 		4AB4FA5D1D2425F0006E6632 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AB4FA5C1D2425F0006E6632 /* GameScene.sks */; };
 		4AB4FA5F1D2425F0006E6632 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4FA5E1D2425F0006E6632 /* GameScene.swift */; };
@@ -21,7 +23,9 @@
 		4AB4FA7F1D2425F0006E6632 /* FIREfighterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4FA7E1D2425F0006E6632 /* FIREfighterUITests.swift */; };
 		4AB4FA8D1D245389006E6632 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4FA8C1D245389006E6632 /* MainMenuScene.swift */; };
 		4AB4FA8F1D2453C5006E6632 /* MainMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AB4FA8E1D2453C5006E6632 /* MainMenuScene.sks */; };
-		4AE6ED071D466579003B2CA0 /* fireWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6ED061D466579003B2CA0 /* fireWall.sks */; };
+		4AE6ED0A1D469BBF003B2CA0 /* fireParticleWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6ED081D469BBF003B2CA0 /* fireParticleWall.sks */; };
+		4AE6ED0B1D469BBF003B2CA0 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6ED091D469BBF003B2CA0 /* spark.png */; };
+		4AE6ED0D1D469C10003B2CA0 /* fireWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6ED0C1D469C10003B2CA0 /* fireWall.sks */; };
 		4AFD887D1D3924A200247CED /* variableWall2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD887C1D3924A200247CED /* variableWall2.sks */; };
 		4AFD88801D392B7C00247CED /* twoMidCB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD887F1D392B7C00247CED /* twoMidCB.sks */; };
 		4AFD88821D392C8600247CED /* twoEndCB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD88811D392C8600247CED /* twoEndCB.sks */; };
@@ -54,6 +58,8 @@
 		4A12F0A91D3D54CA0009DE27 /* baby.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = baby.sks; sourceTree = "<group>"; };
 		4A15519A1D394D0C00F636FF /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		4A15519C1D394E5800F636FF /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
+		4A25894B1D46A5A7005AB87A /* GameEffects.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameEffects.sks; sourceTree = "<group>"; };
+		4A6103751D4811CC002294BE /* smokeParticleWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smokeParticleWall.sks; sourceTree = "<group>"; };
 		4AB4FA571D2425F0006E6632 /* FIREfighter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FIREfighter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB4FA5A1D2425F0006E6632 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AB4FA5C1D2425F0006E6632 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -71,7 +77,9 @@
 		4AB4FA801D2425F0006E6632 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AB4FA8C1D245389006E6632 /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		4AB4FA8E1D2453C5006E6632 /* MainMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenuScene.sks; sourceTree = "<group>"; };
-		4AE6ED061D466579003B2CA0 /* fireWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fireWall.sks; sourceTree = "<group>"; };
+		4AE6ED081D469BBF003B2CA0 /* fireParticleWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fireParticleWall.sks; sourceTree = "<group>"; };
+		4AE6ED091D469BBF003B2CA0 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		4AE6ED0C1D469C10003B2CA0 /* fireWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fireWall.sks; sourceTree = "<group>"; };
 		4AFD887C1D3924A200247CED /* variableWall2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = variableWall2.sks; sourceTree = "<group>"; };
 		4AFD887F1D392B7C00247CED /* twoMidCB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = twoMidCB.sks; sourceTree = "<group>"; };
 		4AFD88811D392C8600247CED /* twoEndCB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = twoEndCB.sks; sourceTree = "<group>"; };
@@ -137,9 +145,13 @@
 				4A15519C1D394E5800F636FF /* MSButtonNode.swift */,
 				4AB4FA5E1D2425F0006E6632 /* GameScene.swift */,
 				4AB4FA5C1D2425F0006E6632 /* GameScene.sks */,
+				4A25894B1D46A5A7005AB87A /* GameEffects.sks */,
 				4A12F0A91D3D54CA0009DE27 /* baby.sks */,
+				4AE6ED0C1D469C10003B2CA0 /* fireWall.sks */,
+				4AE6ED081D469BBF003B2CA0 /* fireParticleWall.sks */,
+				4A6103751D4811CC002294BE /* smokeParticleWall.sks */,
+				4AE6ED091D469BBF003B2CA0 /* spark.png */,
 				4AFD887C1D3924A200247CED /* variableWall2.sks */,
-				4AE6ED061D466579003B2CA0 /* fireWall.sks */,
 				4AFD887E1D392B1600247CED /* CenterBlockedWalls */,
 				4AFD88871D392DED00247CED /* CenterOpenWalls */,
 				4A15519A1D394D0C00F636FF /* CGFloat+Extensions.swift */,
@@ -298,17 +310,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AFD88911D39304F00247CED /* twoRMidCO.sks in Resources */,
+				4AE6ED0B1D469BBF003B2CA0 /* spark.png in Resources */,
+				4AE6ED0A1D469BBF003B2CA0 /* fireParticleWall.sks in Resources */,
 				4AFD888B1D392EBD00247CED /* threeMidCO.sks in Resources */,
 				4AFD888F1D392FFD00247CED /* twoLMidCO.sks in Resources */,
 				4AB4FA5D1D2425F0006E6632 /* GameScene.sks in Resources */,
 				4AFD888D1D392F7300247CED /* threeEndCO.sks in Resources */,
-				4AE6ED071D466579003B2CA0 /* fireWall.sks in Resources */,
 				4A12F0AA1D3D54CA0009DE27 /* baby.sks in Resources */,
 				4AFD88861D392D9300247CED /* leftEndWallCB.sks in Resources */,
+				4AE6ED0D1D469C10003B2CA0 /* fireWall.sks in Resources */,
 				4AFD88821D392C8600247CED /* twoEndCB.sks in Resources */,
 				4AFD88801D392B7C00247CED /* twoMidCB.sks in Resources */,
 				4AB4FA691D2425F0006E6632 /* LaunchScreen.storyboard in Resources */,
 				4AB4FA661D2425F0006E6632 /* Assets.xcassets in Resources */,
+				4A25894C1D46A5A7005AB87A /* GameEffects.sks in Resources */,
+				4A6103761D4811CC002294BE /* smokeParticleWall.sks in Resources */,
 				4AFD88841D392D3400247CED /* rightEndWallCB.sks in Resources */,
 				4AB4FA641D2425F0006E6632 /* Main.storyboard in Resources */,
 				4AB4FA8F1D2453C5006E6632 /* MainMenuScene.sks in Resources */,
