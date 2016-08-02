@@ -38,19 +38,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playButton: MSButtonNode!
     var replayButton: MSButtonNode!
     
-    var points = 0
+    var points: Int = 0
     var sinceTouch: CFTimeInterval = 0
     var spawnTimer: CFTimeInterval = 0
-    var fireTimer: CFTimeInterval = 0
+    var smokeTimer: CFTimeInterval = 0
     var goalTimer: CFTimeInterval = 0
+    var fireBallTimer: CFTimeInterval = 0
+    var babyTimer: CFTimeInterval = 0
+    var babyRescueTimer: CFTimeInterval = 0
 
     
     let fixedDelta: CFTimeInterval = 1.0/60.0 //60 fps
     var moveSpeed: CGFloat = 275
     var scrollSpeed: CGFloat = 120
-    var lastPoints = 0
+    var lastPoints: Int = 0
     var reset: Bool = false
     var heroForce: CGFloat = 20.0
+    var babyCounter = 0
+    
+    var fireBallsRand: UInt32 = 5
+    var fireBallsRate = 50
+    var fireWallRate: UInt32 = 10
+    var fireWallRateBase: UInt32 = 3
+    
+    
+    func wallSpawnRate() -> CFTimeInterval {
+        return 0.6
+    }
     
     
     override func didMoveToView(view: SKView) {
@@ -235,8 +249,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scrollWorld()
         updateObstacles()
         spawnTimer+=fixedDelta
-        fireTimer+=fixedDelta
+        smokeTimer+=fixedDelta
         goalTimer+=fixedDelta
+        babyRescueTimer+=fixedDelta
+        
         
         if (move == .Left) {
             hero.position.x -= moveSpeed * CGFloat(fixedDelta)
@@ -255,9 +271,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         highScoreLabel.text = "High Score: " + String(NSUserDefaults.standardUserDefaults().integerForKey("highScoreLabel"))
         
+
+        
     }
     
-    func scrollWorld(){
+    func scrollWorld() {
         //world scroll
         scrollLayer.position.y -= scrollSpeed * CGFloat(fixedDelta)
         
@@ -290,10 +308,71 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func updateObstacles() {
-
         
         obstacleLayer.position.y -= scrollSpeed * CGFloat(fixedDelta)
         variableLayer.position.y -= scrollSpeed * CGFloat(fixedDelta)
+        
+        
+        //add baby power ups every 500 points after
+  
+        if points >= 500 && Int(points / 500) != Int(lastPoints / 500) {
+            
+            babyTimer = Double(arc4random_uniform(4) + 1)
+            fireWallRateBase = 2
+
+        }
+        //spawn the baby power up at a random x position after a
+        if babyTimer > 0 {
+            babyTimer -= fixedDelta
+            if babyTimer < 0 {
+
+                
+                let babyPath = NSBundle.mainBundle().pathForResource("baby", ofType: "sks")
+                let babyNode = SKReferenceNode (URL: NSURL (fileURLWithPath: babyPath!))
+                
+                let randomBabyPosition = CGPointMake(CGFloat.random(min: 40, max: 280), 556)
+                obstacleLayer.addChild(babyNode)
+                babyNode.zPosition = 1
+                babyNode.position = self.convertPoint(randomBabyPosition, toNode: obstacleLayer)
+
+            }
+        }
+        
+        
+        //spawn fireballs that RAIN from the sky after 500 points and set timer for next fireball
+        
+        if points >= 1500 && Int(points / fireBallsRate) != Int(lastPoints / fireBallsRate) {
+            
+            fireBallTimer = Double(arc4random_uniform(fireBallsRand)) + 1
+            
+        }
+        //action for spawning fireballs
+        if fireBallTimer > 0 {
+            fireBallTimer -= fixedDelta
+            if fireBallTimer < 0 {
+                
+                
+                let fireBallPath = NSBundle.mainBundle().pathForResource("fireball", ofType: "sks")
+                let fireBallNode = SKReferenceNode (URL: NSURL (fileURLWithPath: fireBallPath!))
+                
+                self.addChild(fireBallNode)
+                fireBallNode.zPosition = 1
+                fireBallNode.position = CGPointMake(CGFloat.random(min: 20, max:300), 568)
+                fireBallNode.runAction(SKAction.sequence([
+                    SKAction.waitForDuration(2),
+                    SKAction.removeFromParent()
+                ]))
+            }
+        }
+        //increase difficulty at 2500 points
+        if points >= 2500 && Int(points / 100) != Int(lastPoints / 100) {
+            if fireBallsRand >= 1 {
+                fireBallsRand -= 1
+            }
+            fireBallsRate = 30
+            fireWallRateBase = 1
+        }
+        
         
         /* Loop through obstacle layer nodes */
         for obstacle in obstacleLayer.children as! [SKReferenceNode] {
@@ -308,6 +387,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 obstacle.removeFromParent()
                 
             }
+
             
         }
         
@@ -327,26 +407,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         //scaling adjustable obstacle spawn rates
-        var wallSpawnRate = 0.6
-        var fireWallRate: UInt32 = 6
+
         
         if Int(points / 250) != Int(lastPoints / 250) {
-            fireWallRate -= 2
+            if fireWallRate >= 2 {
+                fireWallRate -= 2
+            }
             scrollSpeed += 20
             moveSpeed += 25
-            wallSpawnRate -= 0.1
             
         }
         
         lastPoints = points
         //maximum smoke wall spawn rate
-        if Float(fireWallRate) <= Float(-2) {
-            fireWallRate = 1
-        }
+
         //maximum wall obstacle spawn rate
-        if  wallSpawnRate <= 0.0 {
-            wallSpawnRate = 0.005
-        }
         //maximum firefighter movement speed
         if moveSpeed >= 600 {
             moveSpeed = 600
@@ -356,29 +431,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scrollSpeed = 320
             heroForce = 30.0
         }
-        
+        //maximum fireball rate
+
         
         /* Time to add a new obstacle? */
-        if spawnTimer >= wallSpawnRate {
-            
-
+        if spawnTimer >= wallSpawnRate() {
             
             /* Create an array of obstacles */
             let filenames = ["twoMidCB", "twoEndCB", "rightEndWallCB", "leftEndWallCB", "threeMidCO", "threeEndCO", "twoLMidCO", "twoRMidCO", "variableWall2"]
             
             // represent the selected obstacle from array
             let filename = filenames[random() % filenames.count]
-            
-            if Int(points / 250) != Int(lastPoints / 250){
-                let babyPath = NSBundle.mainBundle().pathForResource("baby", ofType: "sks")
-                let babyNode = SKReferenceNode (URL: NSURL (fileURLWithPath: babyPath!))
-                let randomBabyPosition = CGPointMake(CGFloat.random(min: 20, max: 300), 556)
-                obstacleLayer.addChild(babyNode)
-                babyNode.zPosition = 1
-                babyNode.position = self.convertPoint(randomBabyPosition, toNode: obstacleLayer)
-                
-            }
-            
             
             //set variable wall position
             if filename == "variableWall2" {
@@ -401,16 +464,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             /* Convert new node position back to obstacle layer space */
             newObstacle.position = self.convertPoint(CGPoint(x: 0.0, y: 568.0), toNode: obstacleLayer)
             
-            
             // Reset spawn timer
             spawnTimer = 0
                 
                 //add in moving smoke walls randomly
                 //set random spawn rate within range
-                let randomFire = Float(arc4random_uniform(fireWallRate) + 1) * 0.5
+                let randomFire = Float(arc4random_uniform(fireWallRate) + fireWallRateBase) * 0.5
                 
                 //smoke wall spawn rate
-                if Float(fireTimer) >= randomFire {
+                if Float(smokeTimer) >= randomFire {
                     let moveLeft = SKAction.moveToX(-180, duration: 1.4)
                     let moveRight = SKAction.moveToX(340, duration: 1.4)
                     
@@ -423,7 +485,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     /* Generate new obstacle position, start just outside screen and with a random x value */
                     let randomPosition = CGPointMake( CGFloat.random(min: -180, max: 340), 569)
                     fireWall.position = self.convertPoint(randomPosition, toNode: variableLayer)
-                    fireTimer = 0
+                    smokeTimer = 0
                     
                 }
 
@@ -431,6 +493,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
     }
+    
+    
     
     func didBeginContact(contact: SKPhysicsContact) {
         
@@ -445,8 +509,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /* Did our hero pass through the 'goal'? */
         if nodeA.name == "goal" && nodeB.name == "hero" || nodeB.name == "goal" && nodeA.name == "hero" {
             
-        
-            
             if goalTimer >= 0.09 {
             /* Increment points */
             points += 10
@@ -460,7 +522,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             return
             }
             
-        } else if nodeA.name == "kill" && nodeB.name == "hero" || nodeB.name == "kill" && nodeA.name == "hero" {
+        } else if (nodeA.name == "kill" && nodeB.name == "hero") || (nodeB.name == "kill" && nodeA.name == "hero") || (nodeA.name == "fireball" && nodeB.name == "hero") || (nodeB.name == "fireball" && nodeA.name == "hero") {
             
             /* Change game state to game over */
             gameState = .GameOver
@@ -494,10 +556,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             playButton.state = .Hidden
             /* We can return now */
             return
+           
+            
+            //collecting babies feature
+        } else if (nodeA.name == "baby" && nodeB.name == "hero") || (nodeB.name == "baby" && nodeA.name == "hero") {
+            
+            //baby power ups slows time
+            
+            if babyRescueTimer >= 0.09 {
+                points += 100
+                scoreLabel.text = String(points)
+                scoreLabel2.text = String(points)
+                
+                if nodeA.name == "babyNode" {
+                    nodeA.removeFromParent()
+                }
+                else {
+                    nodeB.removeFromParent()
+                }
+                
+                scrollSpeed -= 20
+                moveSpeed += 25
+                
+                babyCounter += 1
+                print(babyCounter)
+                
+                babyRescueTimer = 0
+                
+            }
+            
+            
+            
         }
-        
-        /* Ensure only called while game running */
-        if gameState != .Active { return }
         
         
         /* Change game state to game over */
