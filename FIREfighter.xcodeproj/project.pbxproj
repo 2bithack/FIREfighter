@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A085E121D5275DE00123228 /* newHighScore.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A085E111D5275DE00123228 /* newHighScore.sks */; };
+		4A085E141D52775F00123228 /* sparkle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A085E131D52775F00123228 /* sparkle.sks */; };
 		4A12F0AA1D3D54CA0009DE27 /* baby.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A12F0A91D3D54CA0009DE27 /* baby.sks */; };
 		4A15519B1D394D0C00F636FF /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A15519A1D394D0C00F636FF /* CGFloat+Extensions.swift */; };
 		4A15519D1D394E5800F636FF /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A15519C1D394E5800F636FF /* MSButtonNode.swift */; };
@@ -57,6 +59,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A085E111D5275DE00123228 /* newHighScore.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = newHighScore.sks; sourceTree = "<group>"; };
+		4A085E131D52775F00123228 /* sparkle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = sparkle.sks; sourceTree = "<group>"; };
 		4A12F0A91D3D54CA0009DE27 /* baby.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = baby.sks; sourceTree = "<group>"; };
 		4A15519A1D394D0C00F636FF /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		4A15519C1D394E5800F636FF /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
@@ -150,10 +154,12 @@
 				4AB4FA5E1D2425F0006E6632 /* GameScene.swift */,
 				4AB4FA5C1D2425F0006E6632 /* GameScene.sks */,
 				4A25894B1D46A5A7005AB87A /* GameEffects.sks */,
+				4A085E111D5275DE00123228 /* newHighScore.sks */,
 				4ADD4C2F1D503F3D00E059E5 /* fireBoss.sks */,
 				4A12F0A91D3D54CA0009DE27 /* baby.sks */,
 				4AE6ED0C1D469C10003B2CA0 /* fireWall.sks */,
 				4AE6ED081D469BBF003B2CA0 /* fireParticleWall.sks */,
+				4A085E131D52775F00123228 /* sparkle.sks */,
 				4AFDBAD91D4FA6B500E24B46 /* fireball.sks */,
 				4A6103751D4811CC002294BE /* smokeParticleWall.sks */,
 				4AE6ED091D469BBF003B2CA0 /* spark.png */,
@@ -319,11 +325,13 @@
 				4AE6ED0B1D469BBF003B2CA0 /* spark.png in Resources */,
 				4AE6ED0A1D469BBF003B2CA0 /* fireParticleWall.sks in Resources */,
 				4AFD888B1D392EBD00247CED /* threeMidCO.sks in Resources */,
+				4A085E141D52775F00123228 /* sparkle.sks in Resources */,
 				4AFD888F1D392FFD00247CED /* twoLMidCO.sks in Resources */,
 				4AB4FA5D1D2425F0006E6632 /* GameScene.sks in Resources */,
 				4AFD888D1D392F7300247CED /* threeEndCO.sks in Resources */,
 				4A12F0AA1D3D54CA0009DE27 /* baby.sks in Resources */,
 				4AFD88861D392D9300247CED /* leftEndWallCB.sks in Resources */,
+				4A085E121D5275DE00123228 /* newHighScore.sks in Resources */,
 				4AE6ED0D1D469C10003B2CA0 /* fireWall.sks in Resources */,
 				4AFD88821D392C8600247CED /* twoEndCB.sks in Resources */,
 				4AFD88801D392B7C00247CED /* twoMidCB.sks in Resources */,

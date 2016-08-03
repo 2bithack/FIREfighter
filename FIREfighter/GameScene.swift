@@ -46,6 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var fireBallTimer: CFTimeInterval = 0
     var babyTimer: CFTimeInterval = 0
     var babyRescueTimer: CFTimeInterval = 0
+    var newHighScoreTimer: CFTimeInterval = 0
 
     
     let fixedDelta: CFTimeInterval = 1.0/60.0 //60 fps
@@ -60,6 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var fireBallsRate = 50
     var fireWallRate: UInt32 = 10
     var fireWallRateBase: UInt32 = 3
+
     
     
     func wallSpawnRate() -> CFTimeInterval {
@@ -252,6 +254,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smokeTimer+=fixedDelta
         goalTimer+=fixedDelta
         babyRescueTimer+=fixedDelta
+        newHighScoreTimer+=fixedDelta
         
         
         if (move == .Left) {
@@ -262,9 +265,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if points > Int(highScoreLabel.text!) {
             highScoreLabel.text = String(points)
+            
+
         }
         
         if points > NSUserDefaults.standardUserDefaults().integerForKey("highScoreLabel") {
+            
+            if newHighScoreTimer >= 25 {
+                let congrats = NSBundle.mainBundle().pathForResource("newHighScore", ofType: "sks")
+                let newHighScore = SKReferenceNode (URL: NSURL (fileURLWithPath: congrats!))
+                
+                self.addChild(newHighScore)
+                newHighScore.zPosition = 1
+                newHighScore.position = CGPoint(x: 0, y: self.size.height/2)
+                newHighScore.runAction(SKAction.sequence([
+                    SKAction.fadeInWithDuration(0.5),
+                    SKAction.fadeOutWithDuration(1),
+                    SKAction.removeFromParent()
+                    ]))
+                newHighScoreTimer = 0
+            }
+            
             NSUserDefaults.standardUserDefaults().setInteger(points, forKey: "highScoreLabel")
             NSUserDefaults.standardUserDefaults().synchronize()
         }
@@ -315,7 +336,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //add baby power ups every 500 points after
   
-        if points >= 500 && Int(points / 500) != Int(lastPoints / 500) {
+        if points >= 500 && Int(points / 400) != Int(lastPoints / 400) {
             
             babyTimer = Double(arc4random_uniform(4) + 1)
             fireWallRateBase = 2
@@ -561,7 +582,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //collecting babies feature
         } else if (nodeA.name == "baby" && nodeB.name == "hero") || (nodeB.name == "baby" && nodeA.name == "hero") {
             
+            let babyPosition: CGPoint?
             //baby power ups slows time
+            if nodeA.name == "hero" {
+                 babyPosition = nodeA.position
+
+            }else {
+                 babyPosition = nodeB.position
+            }
             
             if babyRescueTimer >= 0.09 {
                 points += 100
@@ -575,13 +603,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     nodeB.removeFromParent()
                 }
                 
-                scrollSpeed -= 20
-                moveSpeed += 25
+                let hunnid = SKSpriteNode(imageNamed: "hunnid")
+                self.addChild(hunnid)
+                hunnid.position = babyPosition!
+                hunnid.setScale(0.7)
+                hunnid.zPosition = 2
+                hunnid.runAction(SKAction.sequence([
+                    SKAction.moveToY(babyPosition!.y + (20), duration: 1),
+                    //SKAction.waitForDuration(1),
+                    SKAction.fadeOutWithDuration(0.5),
+                    SKAction.removeFromParent()
+                    ]))
                 
+                let seconds = 5.0
+                let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
+                let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                
+                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    
+                    self.scrollSpeed += 40
+                    self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -4.8)
+                })
+                
+                scrollSpeed -= 60
+                moveSpeed += 25
+                physicsWorld.gravity = CGVector(dx: 0.0, dy: -1.8)
                 babyCounter += 1
                 print(babyCounter)
                 
                 babyRescueTimer = 0
+                
+                
+                
+                //self.hunnid.position =
                 
             }
             
