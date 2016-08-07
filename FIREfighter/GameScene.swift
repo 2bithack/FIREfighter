@@ -34,6 +34,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreLabel: SKLabelNode!
     var scoreLabel2: SKLabelNode!
     var highScoreLabel: SKLabelNode!
+    var highScoreLabel2: SKLabelNode!
     var pauseButton: MSButtonNode!
     var playButton: MSButtonNode!
     var replayButton: MSButtonNode!
@@ -46,7 +47,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var fireBallTimer: CFTimeInterval = 0
     var babyTimer: CFTimeInterval = 0
     var babyRescueTimer: CFTimeInterval = 0
-    var newHighScoreTimer: CFTimeInterval = 0
+    var boolHighScore: Bool = false
 
     
     let fixedDelta: CFTimeInterval = 1.0/60.0 //60 fps
@@ -54,6 +55,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scrollSpeed: CGFloat = 120
     var lastPoints: Int = 0
     var reset: Bool = false
+    
     var heroForce: CGFloat = 20.0
     var babyCounter = 0
     
@@ -89,6 +91,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel2 = self.childNodeWithName("scoreLabel2") as! SKLabelNode
         highScoreLabel = self.childNodeWithName("highScoreLabel") as! SKLabelNode
         highScoreLabel.text = "High Score: " + String(NSUserDefaults.standardUserDefaults().integerForKey("highScoreLabel"))
+        
+        highScoreLabel2 = self.childNodeWithName("highScoreLabel2") as! SKLabelNode
+        highScoreLabel2.text = "High Score: " + String(NSUserDefaults.standardUserDefaults().integerForKey("highScoreLabel2"))
+
 
         playButton = self.childNodeWithName("playButton") as! MSButtonNode
         replayButton = self.childNodeWithName("replayButton") as! MSButtonNode
@@ -106,6 +112,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.replayButton.state = .Hidden
             replayButton.hidden = true
             
+            
+            
         }  else if self.reset == true {
             self.gameState = .Active
             self.playButton.hidden = true
@@ -115,6 +123,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.replayButton.hidden = true
             self.replayButton.state = .Hidden
             self.physicsWorld.speed = 1
+            self.highScoreLabel.hidden = true
+            self.highScoreLabel2.hidden = true
+            
         }
         
         //pause button action
@@ -126,9 +137,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.playButton.hidden = false
             self.gameState = .Pause
             self.physicsWorld.speed = 0
-            
+            self.highScoreLabel.hidden = false
+            self.highScoreLabel2.hidden = false
+
+
         }
+        
         replayButton.selectedHandler = {
+            
             /* Grab reference to our SpriteKit view */
             let skView = self.view as SKView!
             
@@ -146,6 +162,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             self.reset = true
             
+
+            
         }
         
         //play button action
@@ -160,7 +178,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.replayButton.hidden = true
             self.replayButton.state = .Hidden
             self.physicsWorld.speed = 1
-            
+            self.highScoreLabel.hidden = true
+            self.highScoreLabel2.hidden = true
+
             
         }
         
@@ -196,16 +216,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         /* Called when a touch begins */
-            switch move
-            {
-                case .None:
-                    break
-                case .Right:
-                    move = .Left
-                case .Left:
-                    move = .Right
-            }
-        
+        switch move
+        {
+            case .None:
+                break
+            case .Right:
+                move = .Left
+            case .Left:
+                move = .Right
+        }
     }
    
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -215,15 +234,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //let moveAction = "moveAction"
         hero.physicsBody?.velocity = CGVectorMake(0, 0)
         
-        /* Called when a touch moves */
 
-        
-//        for touch in touches {
-//            /* Get touch position in scene */
-//            let location = touch.locationInNode(self)
-//
-//            hero.runAction(SKAction.moveToX(location.x, duration: 0.5))//, withKey: "moveAction")
-//        }
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -254,7 +265,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smokeTimer+=fixedDelta
         goalTimer+=fixedDelta
         babyRescueTimer+=fixedDelta
-        newHighScoreTimer+=fixedDelta
+        
         
         
         if (move == .Left) {
@@ -265,13 +276,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if points > Int(highScoreLabel.text!) {
             highScoreLabel.text = String(points)
+            highScoreLabel2.text = String(points)
             
 
         }
         
         if points > NSUserDefaults.standardUserDefaults().integerForKey("highScoreLabel") {
             
-            if newHighScoreTimer >= 25 {
+            if boolHighScore == false {
                 let congrats = NSBundle.mainBundle().pathForResource("newHighScore", ofType: "sks")
                 let newHighScore = SKReferenceNode (URL: NSURL (fileURLWithPath: congrats!))
                 
@@ -283,15 +295,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     SKAction.fadeOutWithDuration(1),
                     SKAction.removeFromParent()
                     ]))
-                newHighScoreTimer = 0
+                boolHighScore = true
             }
             
             NSUserDefaults.standardUserDefaults().setInteger(points, forKey: "highScoreLabel")
+            NSUserDefaults.standardUserDefaults().setInteger(points, forKey: "highScoreLabel2")
+
             NSUserDefaults.standardUserDefaults().synchronize()
         }
         
         highScoreLabel.text = "High Score: " + String(NSUserDefaults.standardUserDefaults().integerForKey("highScoreLabel"))
-        
+        highScoreLabel2.text = "High Score: " + String(NSUserDefaults.standardUserDefaults().integerForKey("highScoreLabel2"))
+
 
         
     }
@@ -377,7 +392,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let fireBallNode = SKReferenceNode (URL: NSURL (fileURLWithPath: fireBallPath!))
                 
                 self.addChild(fireBallNode)
-                fireBallNode.zPosition = 1
+                fireBallNode.zPosition = 3
                 fireBallNode.position = CGPointMake(CGFloat.random(min: 20, max:300), 568)
                 fireBallNode.runAction(SKAction.sequence([
                     SKAction.waitForDuration(2),
@@ -569,12 +584,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 /* Apply effect each ground node */
                 node.runAction(shakeScene)
+                
             }
             pauseButton.hidden = true
             replayButton.hidden = false
             replayButton.state = .Active
             playButton.hidden = true
             playButton.state = .Hidden
+            self.highScoreLabel.hidden = false
+            self.highScoreLabel2.hidden = false
+
+            
             /* We can return now */
             return
            
@@ -607,7 +627,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.addChild(hunnid)
                 hunnid.position = babyPosition!
                 hunnid.setScale(0.7)
-                hunnid.zPosition = 2
+                hunnid.zPosition = 4
                 hunnid.runAction(SKAction.sequence([
                     SKAction.moveToY(babyPosition!.y + (20), duration: 1),
                     //SKAction.waitForDuration(1),
@@ -633,26 +653,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 babyRescueTimer = 0
                 
-                
-                
-                //self.hunnid.position =
+            
                 
             }
             
-            
-            
         }
         
-        
-        /* Change game state to game over */
-        //gameState = .GameOver
-        //hero.removeAllActions()
-        
-        /* Show restart button */
-        //playButton.state = .Active
-        
-        
-
     }
     
 }

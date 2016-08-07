@@ -14,6 +14,8 @@
 		4A15519D1D394E5800F636FF /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A15519C1D394E5800F636FF /* MSButtonNode.swift */; };
 		4A25894C1D46A5A7005AB87A /* GameEffects.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A25894B1D46A5A7005AB87A /* GameEffects.sks */; };
 		4A6103761D4811CC002294BE /* smokeParticleWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A6103751D4811CC002294BE /* smokeParticleWall.sks */; };
+		4A6C102F1D54DE3300E3C70D /* 8-bit pusab.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C102E1D54DE3300E3C70D /* 8-bit pusab.ttf */; };
+		4A6C10311D54DF5100E3C70D /* 8-bit pusab.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C10301D54DE4100E3C70D /* 8-bit pusab.ttf */; };
 		4AB4FA5B1D2425F0006E6632 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4FA5A1D2425F0006E6632 /* AppDelegate.swift */; };
 		4AB4FA5D1D2425F0006E6632 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AB4FA5C1D2425F0006E6632 /* GameScene.sks */; };
 		4AB4FA5F1D2425F0006E6632 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4FA5E1D2425F0006E6632 /* GameScene.swift */; };
@@ -26,6 +28,8 @@
 		4AB4FA8D1D245389006E6632 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4FA8C1D245389006E6632 /* MainMenuScene.swift */; };
 		4AB4FA8F1D2453C5006E6632 /* MainMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AB4FA8E1D2453C5006E6632 /* MainMenuScene.sks */; };
 		4ADD4C301D503F3D00E059E5 /* fireBoss.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4ADD4C2F1D503F3D00E059E5 /* fireBoss.sks */; };
+		4ADFE94C1D53E08F00EE92F4 /* BossFight.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4ADFE94B1D53E08F00EE92F4 /* BossFight.sks */; };
+		4ADFE94E1D53E0AD00EE92F4 /* BossFight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFE94D1D53E0AD00EE92F4 /* BossFight.swift */; };
 		4AE6ED0A1D469BBF003B2CA0 /* fireParticleWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6ED081D469BBF003B2CA0 /* fireParticleWall.sks */; };
 		4AE6ED0B1D469BBF003B2CA0 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6ED091D469BBF003B2CA0 /* spark.png */; };
 		4AE6ED0D1D469C10003B2CA0 /* fireWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6ED0C1D469C10003B2CA0 /* fireWall.sks */; };
@@ -66,6 +70,8 @@
 		4A15519C1D394E5800F636FF /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		4A25894B1D46A5A7005AB87A /* GameEffects.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameEffects.sks; sourceTree = "<group>"; };
 		4A6103751D4811CC002294BE /* smokeParticleWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smokeParticleWall.sks; sourceTree = "<group>"; };
+		4A6C102E1D54DE3300E3C70D /* 8-bit pusab.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "8-bit pusab.ttf"; sourceTree = "<group>"; };
+		4A6C10301D54DE4100E3C70D /* 8-bit pusab.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "8-bit pusab.ttf"; sourceTree = "<group>"; };
 		4AB4FA571D2425F0006E6632 /* FIREfighter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FIREfighter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB4FA5A1D2425F0006E6632 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AB4FA5C1D2425F0006E6632 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -84,6 +90,8 @@
 		4AB4FA8C1D245389006E6632 /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		4AB4FA8E1D2453C5006E6632 /* MainMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenuScene.sks; sourceTree = "<group>"; };
 		4ADD4C2F1D503F3D00E059E5 /* fireBoss.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fireBoss.sks; sourceTree = "<group>"; };
+		4ADFE94B1D53E08F00EE92F4 /* BossFight.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BossFight.sks; sourceTree = "<group>"; };
+		4ADFE94D1D53E0AD00EE92F4 /* BossFight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BossFight.swift; sourceTree = "<group>"; };
 		4AE6ED081D469BBF003B2CA0 /* fireParticleWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fireParticleWall.sks; sourceTree = "<group>"; };
 		4AE6ED091D469BBF003B2CA0 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		4AE6ED0C1D469C10003B2CA0 /* fireWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fireWall.sks; sourceTree = "<group>"; };
@@ -127,6 +135,7 @@
 		4AB4FA4E1D2425F0006E6632 = {
 			isa = PBXGroup;
 			children = (
+				4A6C102E1D54DE3300E3C70D /* 8-bit pusab.ttf */,
 				4AB4FA591D2425F0006E6632 /* FIREfighter */,
 				4AB4FA721D2425F0006E6632 /* FIREfighterTests */,
 				4AB4FA7D1D2425F0006E6632 /* FIREfighterUITests */,
@@ -147,12 +156,16 @@
 		4AB4FA591D2425F0006E6632 /* FIREfighter */ = {
 			isa = PBXGroup;
 			children = (
+				4A6C10301D54DE4100E3C70D /* 8-bit pusab.ttf */,
 				4AB4FA5A1D2425F0006E6632 /* AppDelegate.swift */,
 				4AB4FA8E1D2453C5006E6632 /* MainMenuScene.sks */,
 				4AB4FA8C1D245389006E6632 /* MainMenuScene.swift */,
 				4A15519C1D394E5800F636FF /* MSButtonNode.swift */,
-				4AB4FA5E1D2425F0006E6632 /* GameScene.swift */,
+				4AB4FA601D2425F0006E6632 /* GameViewController.swift */,
 				4AB4FA5C1D2425F0006E6632 /* GameScene.sks */,
+				4AB4FA5E1D2425F0006E6632 /* GameScene.swift */,
+				4ADFE94B1D53E08F00EE92F4 /* BossFight.sks */,
+				4ADFE94D1D53E0AD00EE92F4 /* BossFight.swift */,
 				4A25894B1D46A5A7005AB87A /* GameEffects.sks */,
 				4A085E111D5275DE00123228 /* newHighScore.sks */,
 				4ADD4C2F1D503F3D00E059E5 /* fireBoss.sks */,
@@ -167,7 +180,6 @@
 				4AFD887E1D392B1600247CED /* CenterBlockedWalls */,
 				4AFD88871D392DED00247CED /* CenterOpenWalls */,
 				4A15519A1D394D0C00F636FF /* CGFloat+Extensions.swift */,
-				4AB4FA601D2425F0006E6632 /* GameViewController.swift */,
 				4AB4FA621D2425F0006E6632 /* Main.storyboard */,
 				4AB4FA651D2425F0006E6632 /* Assets.xcassets */,
 				4AB4FA671D2425F0006E6632 /* LaunchScreen.storyboard */,
@@ -327,17 +339,20 @@
 				4AFD888B1D392EBD00247CED /* threeMidCO.sks in Resources */,
 				4A085E141D52775F00123228 /* sparkle.sks in Resources */,
 				4AFD888F1D392FFD00247CED /* twoLMidCO.sks in Resources */,
+				4A6C10311D54DF5100E3C70D /* 8-bit pusab.ttf in Resources */,
 				4AB4FA5D1D2425F0006E6632 /* GameScene.sks in Resources */,
 				4AFD888D1D392F7300247CED /* threeEndCO.sks in Resources */,
 				4A12F0AA1D3D54CA0009DE27 /* baby.sks in Resources */,
 				4AFD88861D392D9300247CED /* leftEndWallCB.sks in Resources */,
 				4A085E121D5275DE00123228 /* newHighScore.sks in Resources */,
 				4AE6ED0D1D469C10003B2CA0 /* fireWall.sks in Resources */,
+				4A6C102F1D54DE3300E3C70D /* 8-bit pusab.ttf in Resources */,
 				4AFD88821D392C8600247CED /* twoEndCB.sks in Resources */,
 				4AFD88801D392B7C00247CED /* twoMidCB.sks in Resources */,
 				4AB4FA691D2425F0006E6632 /* LaunchScreen.storyboard in Resources */,
 				4AB4FA661D2425F0006E6632 /* Assets.xcassets in Resources */,
 				4ADD4C301D503F3D00E059E5 /* fireBoss.sks in Resources */,
+				4ADFE94C1D53E08F00EE92F4 /* BossFight.sks in Resources */,
 				4A25894C1D46A5A7005AB87A /* GameEffects.sks in Resources */,
 				4A6103761D4811CC002294BE /* smokeParticleWall.sks in Resources */,
 				4AFDBADA1D4FA6B500E24B46 /* fireball.sks in Resources */,
@@ -374,6 +389,7 @@
 				4AB4FA611D2425F0006E6632 /* GameViewController.swift in Sources */,
 				4A15519D1D394E5800F636FF /* MSButtonNode.swift in Sources */,
 				4AB4FA5B1D2425F0006E6632 /* AppDelegate.swift in Sources */,
+				4ADFE94E1D53E0AD00EE92F4 /* BossFight.swift in Sources */,
 				4AB4FA8D1D245389006E6632 /* MainMenuScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,6 +541,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.GarbageGames.FIREfighter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -539,6 +556,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.GarbageGames.FIREfighter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
