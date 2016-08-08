@@ -8,6 +8,8 @@
 
 import SpriteKit
 import Foundation
+import AVFoundation
+
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
    
@@ -63,6 +65,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var fireBallsRate = 50
     var fireWallRate: UInt32 = 10
     var fireWallRateBase: UInt32 = 3
+    
+    var bgMusic: AVAudioPlayer?
 
     
     
@@ -126,6 +130,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.highScoreLabel.hidden = true
             self.highScoreLabel2.hidden = true
             
+            if let bgMusic = self.setupAudioPlayerWithFile("musicbyMicahVellian", type:"wav") {
+                self.bgMusic = bgMusic
+            }
+            self.bgMusic!.play()
+            self.bgMusic?.numberOfLoops = -1
+            
         }
         
         //pause button action
@@ -139,6 +149,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.physicsWorld.speed = 0
             self.highScoreLabel.hidden = false
             self.highScoreLabel2.hidden = false
+            
+            self.bgMusic!.stop()
 
 
         }
@@ -180,17 +192,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.physicsWorld.speed = 1
             self.highScoreLabel.hidden = true
             self.highScoreLabel2.hidden = true
-
+            
+            if let bgMusic = self.setupAudioPlayerWithFile("musicbyMicahVellian", type:"wav") {
+                self.bgMusic = bgMusic
+            }
+            self.bgMusic!.play()
+            self.bgMusic?.numberOfLoops = -1
             
         }
         
         
         scoreLabel.text = String(points)
         scoreLabel2.text = String(points)
+        
+        //spawn boss for boss fight
+        if points >= 5000 {
+            
+        }
 
 
     }
     
+    
+    
+    //call for audio player
+    func setupAudioPlayerWithFile(file:NSString, type:NSString) -> AVAudioPlayer?  {
+        
+        let soundFilePath = NSBundle.mainBundle().pathForResource("musicbyMicahVellian", ofType: "wav")
+        let soundFileURL = NSURL(fileURLWithPath: soundFilePath!)
+        
+        var audioPlayer: AVAudioPlayer?
+        
+        do {
+            try audioPlayer = AVAudioPlayer(contentsOfURL: soundFileURL)
+        } catch {
+            print("Player not available")
+        }
+        return audioPlayer
+    }
     
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -199,7 +238,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if gameState != .Active { return }
         
         hero.physicsBody?.velocity = CGVectorMake(0, 0)
-        hero.physicsBody?.applyForce(CGVectorMake(0.0, 5.0))
+        hero.physicsBody?.applyForce(CGVectorMake(0.0, 10.0))
 
         
         for touch in touches {
@@ -225,6 +264,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             case .Left:
                 move = .Right
         }
+        
+        //controls for boss level
+        if points >= 5000{
+            hero.physicsBody!.dynamic = false
+            
+        }
+        
     }
    
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -351,7 +397,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //add baby power ups every 500 points after
   
-        if points >= 500 && Int(points / 400) != Int(lastPoints / 400) {
+        if points >= 500 && Int(points / 300) != Int(lastPoints / 300) {
             
             babyTimer = Double(arc4random_uniform(4) + 1)
             fireWallRateBase = 2
@@ -395,7 +441,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 fireBallNode.zPosition = 3
                 fireBallNode.position = CGPointMake(CGFloat.random(min: 20, max:300), 568)
                 fireBallNode.runAction(SKAction.sequence([
-                    SKAction.waitForDuration(2),
+                    SKAction.waitForDuration(3),
                     SKAction.removeFromParent()
                 ]))
             }
@@ -528,6 +574,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         }
+        
+        //remove obstacles for boss fight
+        
+        if points >= 5000 {
+            obstacleLayer.removeAllChildren()
+            variableLayer.removeAllChildren()
+            
+        }
+        
+        
+        
+        
     }
     
     
@@ -573,6 +631,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.hero.removeAllActions()
             })
             
+            //end music
+            
             /* Create our hero death action */
             hero.runAction(heroDeath)
             
@@ -593,7 +653,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             playButton.state = .Hidden
             self.highScoreLabel.hidden = false
             self.highScoreLabel2.hidden = false
-
+            self.bgMusic!.stop()
             
             /* We can return now */
             return
@@ -653,6 +713,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 babyRescueTimer = 0
                 
+//                if babyCounter >= 3 {
+//                    let powerUp: SKAction = SKAction.init(named: "3babies")!
+//                    
+//                    babyCounter = 0
+//                }
             
                 
             }
