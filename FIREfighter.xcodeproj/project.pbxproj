@@ -7,13 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A02AEF81D5BDCA000413715 /* extinguisher.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A02AEF71D5BDCA000413715 /* extinguisher.sks */; };
+		4A02AF061D5CD8C700413715 /* jACKsss.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A02AF031D5CD8C700413715 /* jACKsss.wav */; };
+		4A02AF071D5CD8C700413715 /* olJack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A02AF041D5CD8C700413715 /* olJack.wav */; };
+		4A02AF081D5CD8C700413715 /* zachFail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A02AF051D5CD8C700413715 /* zachFail.wav */; };
+		4A02AF0C1D5CEE4200413715 /* Elieee.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A02AF0B1D5CEE4200413715 /* Elieee.wav */; };
 		4A085E121D5275DE00123228 /* newHighScore.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A085E111D5275DE00123228 /* newHighScore.sks */; };
 		4A085E141D52775F00123228 /* sparkle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A085E131D52775F00123228 /* sparkle.sks */; };
+		4A0C3E4E1D592665000D7D3A /* screamingBaby.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A0C3E4D1D592665000D7D3A /* screamingBaby.wav */; };
+		4A0C3E501D5926A9000D7D3A /* screamingPaul.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A0C3E4F1D5926A9000D7D3A /* screamingPaul.wav */; };
 		4A12F0AA1D3D54CA0009DE27 /* baby.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A12F0A91D3D54CA0009DE27 /* baby.sks */; };
 		4A15519B1D394D0C00F636FF /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A15519A1D394D0C00F636FF /* CGFloat+Extensions.swift */; };
 		4A15519D1D394E5800F636FF /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A15519C1D394E5800F636FF /* MSButtonNode.swift */; };
 		4A25894C1D46A5A7005AB87A /* GameEffects.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A25894B1D46A5A7005AB87A /* GameEffects.sks */; };
-		4A6103761D4811CC002294BE /* smokeParticleWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A6103751D4811CC002294BE /* smokeParticleWall.sks */; };
+		4A6103761D4811CC002294BE /* smokeParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A6103751D4811CC002294BE /* smokeParticle.sks */; };
 		4A6C102F1D54DE3300E3C70D /* 8-bit pusab.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C102E1D54DE3300E3C70D /* 8-bit pusab.ttf */; };
 		4A6C10311D54DF5100E3C70D /* 8-bit pusab.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C10301D54DE4100E3C70D /* 8-bit pusab.ttf */; };
 		4A79373E1D583C8A0059D174 /* musicbyMicahVellian.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A79373D1D583C8A0059D174 /* musicbyMicahVellian.wav */; };
@@ -29,11 +36,12 @@
 		4AB4FA8D1D245389006E6632 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4FA8C1D245389006E6632 /* MainMenuScene.swift */; };
 		4AB4FA8F1D2453C5006E6632 /* MainMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AB4FA8E1D2453C5006E6632 /* MainMenuScene.sks */; };
 		4ADD4C301D503F3D00E059E5 /* fireBoss.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4ADD4C2F1D503F3D00E059E5 /* fireBoss.sks */; };
-		4ADFE94C1D53E08F00EE92F4 /* BossFight.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4ADFE94B1D53E08F00EE92F4 /* BossFight.sks */; };
-		4ADFE94E1D53E0AD00EE92F4 /* BossFight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFE94D1D53E0AD00EE92F4 /* BossFight.swift */; };
-		4AE6ED0A1D469BBF003B2CA0 /* fireParticleWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6ED081D469BBF003B2CA0 /* fireParticleWall.sks */; };
+		4AE6ED0A1D469BBF003B2CA0 /* fireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6ED081D469BBF003B2CA0 /* fireParticle.sks */; };
 		4AE6ED0B1D469BBF003B2CA0 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6ED091D469BBF003B2CA0 /* spark.png */; };
 		4AE6ED0D1D469C10003B2CA0 /* fireWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6ED0C1D469C10003B2CA0 /* fireWall.sks */; };
+		4AE6FD4E1D5A294900E96AAA /* FirefighterIntro.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6FD4D1D5A294900E96AAA /* FirefighterIntro.wav */; };
+		4AF85CCB1D62A2B6003AC83A /* CreditsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AF85CCA1D62A2B6003AC83A /* CreditsScene.sks */; };
+		4AF85CCD1D62B6DE003AC83A /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF85CCC1D62B6DE003AC83A /* CreditsScene.swift */; };
 		4AFD887D1D3924A200247CED /* variableWall2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD887C1D3924A200247CED /* variableWall2.sks */; };
 		4AFD88801D392B7C00247CED /* twoMidCB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD887F1D392B7C00247CED /* twoMidCB.sks */; };
 		4AFD88821D392C8600247CED /* twoEndCB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD88811D392C8600247CED /* twoEndCB.sks */; };
@@ -64,13 +72,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A02AEF71D5BDCA000413715 /* extinguisher.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = extinguisher.sks; sourceTree = "<group>"; };
+		4A02AF031D5CD8C700413715 /* jACKsss.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jACKsss.wav; sourceTree = "<group>"; };
+		4A02AF041D5CD8C700413715 /* olJack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = olJack.wav; sourceTree = "<group>"; };
+		4A02AF051D5CD8C700413715 /* zachFail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = zachFail.wav; sourceTree = "<group>"; };
+		4A02AF0B1D5CEE4200413715 /* Elieee.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Elieee.wav; sourceTree = "<group>"; };
 		4A085E111D5275DE00123228 /* newHighScore.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = newHighScore.sks; sourceTree = "<group>"; };
 		4A085E131D52775F00123228 /* sparkle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = sparkle.sks; sourceTree = "<group>"; };
+		4A0C3E4D1D592665000D7D3A /* screamingBaby.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = screamingBaby.wav; sourceTree = "<group>"; };
+		4A0C3E4F1D5926A9000D7D3A /* screamingPaul.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = screamingPaul.wav; sourceTree = "<group>"; };
 		4A12F0A91D3D54CA0009DE27 /* baby.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = baby.sks; sourceTree = "<group>"; };
 		4A15519A1D394D0C00F636FF /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		4A15519C1D394E5800F636FF /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		4A25894B1D46A5A7005AB87A /* GameEffects.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameEffects.sks; sourceTree = "<group>"; };
-		4A6103751D4811CC002294BE /* smokeParticleWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smokeParticleWall.sks; sourceTree = "<group>"; };
+		4A6103751D4811CC002294BE /* smokeParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smokeParticle.sks; sourceTree = "<group>"; };
 		4A6C102E1D54DE3300E3C70D /* 8-bit pusab.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "8-bit pusab.ttf"; sourceTree = "<group>"; };
 		4A6C10301D54DE4100E3C70D /* 8-bit pusab.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "8-bit pusab.ttf"; sourceTree = "<group>"; };
 		4A79373D1D583C8A0059D174 /* musicbyMicahVellian.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = musicbyMicahVellian.wav; sourceTree = "<group>"; };
@@ -92,11 +107,12 @@
 		4AB4FA8C1D245389006E6632 /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		4AB4FA8E1D2453C5006E6632 /* MainMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenuScene.sks; sourceTree = "<group>"; };
 		4ADD4C2F1D503F3D00E059E5 /* fireBoss.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fireBoss.sks; sourceTree = "<group>"; };
-		4ADFE94B1D53E08F00EE92F4 /* BossFight.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BossFight.sks; sourceTree = "<group>"; };
-		4ADFE94D1D53E0AD00EE92F4 /* BossFight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BossFight.swift; sourceTree = "<group>"; };
-		4AE6ED081D469BBF003B2CA0 /* fireParticleWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fireParticleWall.sks; sourceTree = "<group>"; };
+		4AE6ED081D469BBF003B2CA0 /* fireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fireParticle.sks; sourceTree = "<group>"; };
 		4AE6ED091D469BBF003B2CA0 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		4AE6ED0C1D469C10003B2CA0 /* fireWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fireWall.sks; sourceTree = "<group>"; };
+		4AE6FD4D1D5A294900E96AAA /* FirefighterIntro.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FirefighterIntro.wav; sourceTree = "<group>"; };
+		4AF85CCA1D62A2B6003AC83A /* CreditsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CreditsScene.sks; sourceTree = "<group>"; };
+		4AF85CCC1D62B6DE003AC83A /* CreditsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
 		4AFD887C1D3924A200247CED /* variableWall2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = variableWall2.sks; sourceTree = "<group>"; };
 		4AFD887F1D392B7C00247CED /* twoMidCB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = twoMidCB.sks; sourceTree = "<group>"; };
 		4AFD88811D392C8600247CED /* twoEndCB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = twoEndCB.sks; sourceTree = "<group>"; };
@@ -158,26 +174,34 @@
 		4AB4FA591D2425F0006E6632 /* FIREfighter */ = {
 			isa = PBXGroup;
 			children = (
+				4AE6FD4D1D5A294900E96AAA /* FirefighterIntro.wav */,
+				4A0C3E4F1D5926A9000D7D3A /* screamingPaul.wav */,
+				4A0C3E4D1D592665000D7D3A /* screamingBaby.wav */,
 				4A79373D1D583C8A0059D174 /* musicbyMicahVellian.wav */,
+				4A02AF0B1D5CEE4200413715 /* Elieee.wav */,
+				4A02AF031D5CD8C700413715 /* jACKsss.wav */,
+				4A02AF041D5CD8C700413715 /* olJack.wav */,
+				4A02AF051D5CD8C700413715 /* zachFail.wav */,
 				4A6C10301D54DE4100E3C70D /* 8-bit pusab.ttf */,
 				4AB4FA5A1D2425F0006E6632 /* AppDelegate.swift */,
+				4AB4FA601D2425F0006E6632 /* GameViewController.swift */,
 				4AB4FA8E1D2453C5006E6632 /* MainMenuScene.sks */,
 				4AB4FA8C1D245389006E6632 /* MainMenuScene.swift */,
-				4A15519C1D394E5800F636FF /* MSButtonNode.swift */,
-				4AB4FA601D2425F0006E6632 /* GameViewController.swift */,
-				4AB4FA5C1D2425F0006E6632 /* GameScene.sks */,
 				4AB4FA5E1D2425F0006E6632 /* GameScene.swift */,
-				4ADFE94B1D53E08F00EE92F4 /* BossFight.sks */,
-				4ADFE94D1D53E0AD00EE92F4 /* BossFight.swift */,
+				4AB4FA5C1D2425F0006E6632 /* GameScene.sks */,
+				4AF85CCA1D62A2B6003AC83A /* CreditsScene.sks */,
+				4AF85CCC1D62B6DE003AC83A /* CreditsScene.swift */,
+				4A15519C1D394E5800F636FF /* MSButtonNode.swift */,
 				4A25894B1D46A5A7005AB87A /* GameEffects.sks */,
 				4A085E111D5275DE00123228 /* newHighScore.sks */,
 				4ADD4C2F1D503F3D00E059E5 /* fireBoss.sks */,
 				4A12F0A91D3D54CA0009DE27 /* baby.sks */,
 				4AE6ED0C1D469C10003B2CA0 /* fireWall.sks */,
-				4AE6ED081D469BBF003B2CA0 /* fireParticleWall.sks */,
-				4A085E131D52775F00123228 /* sparkle.sks */,
+				4A02AEF71D5BDCA000413715 /* extinguisher.sks */,
 				4AFDBAD91D4FA6B500E24B46 /* fireball.sks */,
-				4A6103751D4811CC002294BE /* smokeParticleWall.sks */,
+				4A085E131D52775F00123228 /* sparkle.sks */,
+				4A6103751D4811CC002294BE /* smokeParticle.sks */,
+				4AE6ED081D469BBF003B2CA0 /* fireParticle.sks */,
 				4AE6ED091D469BBF003B2CA0 /* spark.png */,
 				4AFD887C1D3924A200247CED /* variableWall2.sks */,
 				4AFD887E1D392B1600247CED /* CenterBlockedWalls */,
@@ -299,7 +323,7 @@
 				TargetAttributes = {
 					4AB4FA561D2425F0006E6632 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 289SSXP96T;
+						DevelopmentTeam = 8XA7DXVZNT;
 					};
 					4AB4FA6E1D2425F0006E6632 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -338,27 +362,35 @@
 			files = (
 				4AFD88911D39304F00247CED /* twoRMidCO.sks in Resources */,
 				4AE6ED0B1D469BBF003B2CA0 /* spark.png in Resources */,
-				4AE6ED0A1D469BBF003B2CA0 /* fireParticleWall.sks in Resources */,
+				4AE6ED0A1D469BBF003B2CA0 /* fireParticle.sks in Resources */,
+				4A02AEF81D5BDCA000413715 /* extinguisher.sks in Resources */,
 				4AFD888B1D392EBD00247CED /* threeMidCO.sks in Resources */,
 				4A085E141D52775F00123228 /* sparkle.sks in Resources */,
 				4AFD888F1D392FFD00247CED /* twoLMidCO.sks in Resources */,
+				4A02AF0C1D5CEE4200413715 /* Elieee.wav in Resources */,
 				4A6C10311D54DF5100E3C70D /* 8-bit pusab.ttf in Resources */,
 				4A79373E1D583C8A0059D174 /* musicbyMicahVellian.wav in Resources */,
+				4A0C3E4E1D592665000D7D3A /* screamingBaby.wav in Resources */,
+				4AF85CCB1D62A2B6003AC83A /* CreditsScene.sks in Resources */,
 				4AB4FA5D1D2425F0006E6632 /* GameScene.sks in Resources */,
 				4AFD888D1D392F7300247CED /* threeEndCO.sks in Resources */,
 				4A12F0AA1D3D54CA0009DE27 /* baby.sks in Resources */,
 				4AFD88861D392D9300247CED /* leftEndWallCB.sks in Resources */,
 				4A085E121D5275DE00123228 /* newHighScore.sks in Resources */,
+				4A0C3E501D5926A9000D7D3A /* screamingPaul.wav in Resources */,
+				4AE6FD4E1D5A294900E96AAA /* FirefighterIntro.wav in Resources */,
 				4AE6ED0D1D469C10003B2CA0 /* fireWall.sks in Resources */,
 				4A6C102F1D54DE3300E3C70D /* 8-bit pusab.ttf in Resources */,
 				4AFD88821D392C8600247CED /* twoEndCB.sks in Resources */,
+				4A02AF081D5CD8C700413715 /* zachFail.wav in Resources */,
 				4AFD88801D392B7C00247CED /* twoMidCB.sks in Resources */,
 				4AB4FA691D2425F0006E6632 /* LaunchScreen.storyboard in Resources */,
 				4AB4FA661D2425F0006E6632 /* Assets.xcassets in Resources */,
 				4ADD4C301D503F3D00E059E5 /* fireBoss.sks in Resources */,
-				4ADFE94C1D53E08F00EE92F4 /* BossFight.sks in Resources */,
 				4A25894C1D46A5A7005AB87A /* GameEffects.sks in Resources */,
-				4A6103761D4811CC002294BE /* smokeParticleWall.sks in Resources */,
+				4A02AF061D5CD8C700413715 /* jACKsss.wav in Resources */,
+				4A6103761D4811CC002294BE /* smokeParticle.sks in Resources */,
+				4A02AF071D5CD8C700413715 /* olJack.wav in Resources */,
 				4AFDBADA1D4FA6B500E24B46 /* fireball.sks in Resources */,
 				4AFD88841D392D3400247CED /* rightEndWallCB.sks in Resources */,
 				4AB4FA641D2425F0006E6632 /* Main.storyboard in Resources */,
@@ -388,12 +420,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AF85CCD1D62B6DE003AC83A /* CreditsScene.swift in Sources */,
 				4AB4FA5F1D2425F0006E6632 /* GameScene.swift in Sources */,
 				4A15519B1D394D0C00F636FF /* CGFloat+Extensions.swift in Sources */,
 				4AB4FA611D2425F0006E6632 /* GameViewController.swift in Sources */,
 				4A15519D1D394E5800F636FF /* MSButtonNode.swift in Sources */,
 				4AB4FA5B1D2425F0006E6632 /* AppDelegate.swift in Sources */,
-				4ADFE94E1D53E0AD00EE92F4 /* BossFight.swift in Sources */,
 				4AB4FA8D1D245389006E6632 /* MainMenuScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,8 +573,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FIREfighter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.GarbageGames.FIREfighter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GarbageGames.fireFIGHTERx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -556,8 +589,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FIREfighter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.GarbageGames.FIREfighter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GarbageGames.fireFIGHTERx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
