@@ -21,22 +21,22 @@ class MainScene: SKScene {
     /* UI Connections */
     var buttonPlay: MSButtonNode!
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         
-        self.view?.multipleTouchEnabled = false
+        self.view?.isMultipleTouchEnabled = false
 
         
-        baby1 = self.childNodeWithName("baby1") as! SKSpriteNode
-        baby2 = self.childNodeWithName("baby2") as! SKSpriteNode
-        baby3 = self.childNodeWithName("baby3") as! SKSpriteNode
-        about = self.childNodeWithName("about") as! SKSpriteNode
+        baby1 = self.childNode(withName: "baby1") as! SKSpriteNode
+        baby2 = self.childNode(withName: "baby2") as! SKSpriteNode
+        baby3 = self.childNode(withName: "baby3") as! SKSpriteNode
+        about = self.childNode(withName: "about") as! SKSpriteNode
         
         
         let intro = SKAction.playSoundFileNamed("FirefighterIntro.wav", waitForCompletion: false)
-        self.runAction(intro)
+        self.run(intro)
         
         /* Setup your scene here */
-        if let bool = NSUserDefaults.standardUserDefaults().objectForKey("playSound") as! Bool?
+        if let bool = UserDefaults.standard.object(forKey: "playSound") as! Bool?
         {
             playSound = bool
         } else
@@ -44,7 +44,7 @@ class MainScene: SKScene {
             playSound = true
         }
         
-        if let bool2 = NSUserDefaults.standardUserDefaults().objectForKey("cheating") as! Bool?
+        if let bool2 = UserDefaults.standard.object(forKey: "cheating") as! Bool?
         {
             cheating = bool2
         } else
@@ -53,7 +53,7 @@ class MainScene: SKScene {
         }
         
         /* Set UI connections */
-        buttonPlay = self.childNodeWithName("buttonPlay") as! MSButtonNode
+        buttonPlay = self.childNode(withName: "buttonPlay") as! MSButtonNode
         /* Setup restart button selection handler */
         buttonPlay.selectedHandler = {
             
@@ -64,26 +64,26 @@ class MainScene: SKScene {
             let scene = GameScene(fileNamed:"GameScene") as GameScene!
             
             /* Ensure correct aspect mode */
-            scene.scaleMode = .AspectFit
+            scene?.scaleMode = .aspectFit
             
             /* Show debug */
-            skView.showsPhysics = false
-            skView.showsDrawCount = false
-            skView.showsFPS = false
+            skView?.showsPhysics = false
+            skView?.showsDrawCount = false
+            skView?.showsFPS = false
             
             /* Start game scene */
-            skView.presentScene(scene)
+            skView?.presentScene(scene)
         }
         
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
         for touch in touches {
             
-            let location = touch.locationInNode(self)
+            let location = touch.location(in: self)
             
-            if baby2.containsPoint(location) {
+            if baby2.contains(location) {
                 /* Grab reference to our SpriteKit view */
                 let skView = self.view as SKView!
                 
@@ -91,22 +91,22 @@ class MainScene: SKScene {
                 let scene = GameScene(fileNamed:"GameScene") as GameScene!
                 
                 /* Ensure correct aspect mode */
-                scene.scaleMode = .AspectFit
+                scene?.scaleMode = .aspectFit
                 
                 /* Show debug */
-                skView.showsPhysics = false
-                skView.showsDrawCount = false
-                skView.showsFPS = false
+                skView?.showsPhysics = false
+                skView?.showsDrawCount = false
+                skView?.showsFPS = false
                 
-                scene.points = 5000
+                scene?.points = 5000
                 cheating = true
                 
                 /* Start game scene */
-                skView.presentScene(scene)
+                skView?.presentScene(scene)
                 
             }
             
-            if baby3.containsPoint(location) {
+            if baby3.contains(location) {
                 /* Grab reference to our SpriteKit view */
                 let skView = self.view as SKView!
                 
@@ -114,21 +114,21 @@ class MainScene: SKScene {
                 let scene = GameScene(fileNamed:"GameScene") as GameScene!
                 
                 /* Ensure correct aspect mode */
-                scene.scaleMode = .AspectFit
+                scene?.scaleMode = .aspectFit
                 
                 /* Show debug */
-                skView.showsPhysics = false
-                skView.showsDrawCount = false
-                skView.showsFPS = false
+                skView?.showsPhysics = false
+                skView?.showsDrawCount = false
+                skView?.showsFPS = false
                 
-                scene.points = 590
+                scene?.points = 590
                 
                 /* Start game scene */
-                skView.presentScene(scene)
+                skView?.presentScene(scene)
                 
             }
             
-            if baby1.containsPoint(location) {
+            if baby1.contains(location) {
                 /* Grab reference to our SpriteKit view */
                 let skView = self.view as SKView!
                 
@@ -136,27 +136,27 @@ class MainScene: SKScene {
                 let scene = GameScene(fileNamed:"GameScene") as GameScene!
                 
                 /* Ensure correct aspect mode */
-                scene.scaleMode = .AspectFit
+                scene?.scaleMode = .aspectFit
                 
                 /* Show debug */
-                skView.showsPhysics = false
-                skView.showsDrawCount = false
-                skView.showsFPS = false
+                skView?.showsPhysics = false
+                skView?.showsDrawCount = false
+                skView?.showsFPS = false
                 
-                NSUserDefaults.standardUserDefaults().setInteger(0, forKey: "highScoreLabel")
-                NSUserDefaults.standardUserDefaults().setInteger(0, forKey: "highScoreLabel2")
-                NSUserDefaults.standardUserDefaults().synchronize()
+                UserDefaults.standard.set(0, forKey: "highScoreLabel")
+                UserDefaults.standard.set(0, forKey: "highScoreLabel2")
+                UserDefaults.standard.synchronize()
 
                 /* Start game scene */
-                skView.presentScene(scene)
+                skView?.presentScene(scene)
 
             }
             
-            if about.containsPoint(location) {
+            if about.contains(location) {
                 let skView = self.view as SKView!
                 let scene = CreditsScene(fileNamed:"CreditsScene") as CreditsScene!
-                scene.scaleMode = .AspectFit
-                skView.presentScene(scene)
+                scene?.scaleMode = .aspectFit
+                skView?.presentScene(scene)
             }
             
         }

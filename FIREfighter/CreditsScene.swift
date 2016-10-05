@@ -14,20 +14,20 @@ class CreditsScene: SKScene {
     
     var back: SKSpriteNode!
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         
-        self.view?.multipleTouchEnabled = false
+        self.view?.isMultipleTouchEnabled = false
         
-        back = self.childNodeWithName("back") as! SKSpriteNode
+        back = self.childNode(withName: "back") as! SKSpriteNode
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         for touch in touches {
             
-            let location = touch.locationInNode(self)
+            let location = touch.location(in: self)
             
-            if back.containsPoint(location)
+            if back.contains(location)
             {
                 /* Grab reference to our SpriteKit view */
                 let skView = self.view as SKView!
@@ -36,18 +36,18 @@ class CreditsScene: SKScene {
                 let scene = MainScene(fileNamed:"MainMenuScene")
                 
                 /* Ensure correct aspect mode */
-                scene!.scaleMode = .AspectFit
+                scene!.scaleMode = .aspectFit
                 
                 /* Show debug */
-                skView.showsPhysics = false
-                skView.showsDrawCount = false
-                skView.showsFPS = false
+                skView?.showsPhysics = false
+                skView?.showsDrawCount = false
+                skView?.showsFPS = false
                 
                 
 
                 
                 /* Start game scene */
-                skView.presentScene(scene)
+                skView?.presentScene(scene)
                 
             }
         }

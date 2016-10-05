@@ -9,22 +9,42 @@
 import SpriteKit
 import Foundation
 import AVFoundation
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
    
     enum GameSceneState {
-        case Active, GameOver, Pause
+        case active, gameOver, pause
     }
     
     enum Move {
-        case None, Left, Right
+        case none, left, right
     }
     
-    var move: Move = .None
+    var move: Move = .none
     
     var points: Int = 0
-    var gameState: GameSceneState = .Active
+    var gameState: GameSceneState = .active
     var hero: SKSpriteNode!
     var woodFloor: SKSpriteNode!
     var scrollLayer: SKNode!
@@ -81,76 +101,78 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     static var stayPaused = false as Bool
     
-    override var paused: Bool {
+    override var isPaused: Bool {
         get {
-            return super.paused
+            return super.isPaused
         }
         set {
             if (newValue || !GameScene.stayPaused) {
-                super.paused = newValue
+                super.isPaused = newValue
             }
             GameScene.stayPaused = false
         }
     }
     
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         
 
         
-        self.view?.multipleTouchEnabled = false
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadAds"), object: nil)
+        
+        self.view?.isMultipleTouchEnabled = false
 
         //cage the scene
-        super.didMoveToView(view)
-        let borderBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
+        super.didMove(to: view)
+        let borderBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         borderBody.friction = 0
         self.physicsBody = borderBody
         
         //load hero
-        hero = self.childNodeWithName("//hero") as! SKSpriteNode
-        scrollLayer = self.childNodeWithName("scrollLayer")
+        hero = self.childNode(withName: "//hero") as! SKSpriteNode
+        scrollLayer = self.childNode(withName: "scrollLayer")
         physicsWorld.contactDelegate = self
-        soundButton = self.childNodeWithName("sound") as! MSButtonNode
-        pauseButton = self.childNodeWithName("pauseButton") as! MSButtonNode
-        scoreLabel = self.childNodeWithName("scoreLabel") as! SKLabelNode
-        scoreLabel2 = self.childNodeWithName("scoreLabel2") as! SKLabelNode
-        highScoreLabel = self.childNodeWithName("highScoreLabel") as! SKLabelNode
-        highScoreLabel.text = "High Score: " + String(NSUserDefaults.standardUserDefaults().integerForKey("highScoreLabel"))
+        soundButton = self.childNode(withName: "sound") as! MSButtonNode
+        pauseButton = self.childNode(withName: "pauseButton") as! MSButtonNode
+        scoreLabel = self.childNode(withName: "scoreLabel") as! SKLabelNode
+        scoreLabel2 = self.childNode(withName: "scoreLabel2") as! SKLabelNode
+        highScoreLabel = self.childNode(withName: "highScoreLabel") as! SKLabelNode
+        highScoreLabel.text = "High Score: " + String(UserDefaults.standard.integer(forKey: "highScoreLabel"))
         
-        highScoreLabel2 = self.childNodeWithName("highScoreLabel2") as! SKLabelNode
-        highScoreLabel2.text = "High Score: " + String(NSUserDefaults.standardUserDefaults().integerForKey("highScoreLabel2"))
+        highScoreLabel2 = self.childNode(withName: "highScoreLabel2") as! SKLabelNode
+        highScoreLabel2.text = "High Score: " + String(UserDefaults.standard.integer(forKey: "highScoreLabel2"))
 
 
-        playButton = self.childNodeWithName("playButton") as! MSButtonNode
-        replayButton = self.childNodeWithName("replayButton") as! MSButtonNode
+        playButton = self.childNode(withName: "playButton") as! MSButtonNode
+        replayButton = self.childNode(withName: "replayButton") as! MSButtonNode
 //        tapLeft = self.childNodeWithName("//tapLeft")
 //        tapRight = self.childNodeWithName("//tapRight")
-        tap = self.childNodeWithName("//tap")
+        tap = self.childNode(withName: "//tap")
         
-        soundButton.hidden = true
+        soundButton.isHidden = true
 
 //button settings to load game on fresh start and different settings when reset
         
         if self.reset == false {
-            self.gameState = .Pause
-            self.pauseButton.state = .Hidden
-            pauseButton.hidden = true
-            self.playButton.state = .Active
-            self.replayButton.state = .Hidden
-            replayButton.hidden = true
+            self.gameState = .pause
+            self.pauseButton.state = .hidden
+            pauseButton.isHidden = true
+            self.playButton.state = .active
+            self.replayButton.state = .hidden
+            replayButton.isHidden = true
             
             
         }  else if self.reset == true {
-            self.gameState = .Active
-            self.playButton.hidden = true
-            self.playButton.state = .Hidden
-            self.pauseButton.state = .Active
-            self.pauseButton.hidden = false
-            self.replayButton.hidden = true
-            self.replayButton.state = .Hidden
+            self.gameState = .active
+            self.playButton.isHidden = true
+            self.playButton.state = .hidden
+            self.pauseButton.state = .active
+            self.pauseButton.isHidden = false
+            self.replayButton.isHidden = true
+            self.replayButton.state = .hidden
             self.physicsWorld.speed = 1
-            self.highScoreLabel.hidden = true
-            self.highScoreLabel2.hidden = true
+            self.highScoreLabel.isHidden = true
+            self.highScoreLabel2.isHidden = true
             
             if let bgMusic = self.setupAudioPlayerWithFile("musicbyMicahVellian", type:"wav") {
                 self.bgMusic = bgMusic
@@ -176,29 +198,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
             }
 
-            NSUserDefaults.standardUserDefaults().setObject(playSound, forKey: "playSound")
+            UserDefaults.standard.set(playSound, forKey: "playSound")
         }
         
         
         pauseButton.selectedHandler = {
-            self.pauseButton.hidden = true
-            self.soundButton.hidden = false
-            self.replayButton.hidden = false
-            self.replayButton.state = .Active
-            self.playButton.state = .Active
-            self.playButton.hidden = false
-            self.gameState = .Pause
+            self.pauseButton.isHidden = true
+            self.soundButton.isHidden = false
+            self.replayButton.isHidden = false
+            self.replayButton.state = .active
+            self.playButton.state = .active
+            self.playButton.isHidden = false
+            self.gameState = .pause
             self.physicsWorld.speed = 0
-            self.highScoreLabel.hidden = false
-            self.highScoreLabel2.hidden = false
+            self.highScoreLabel.isHidden = false
+            self.highScoreLabel2.isHidden = false
             
-            self.paused = true
+            self.isPaused = true
             
             if let _ = self.bgMusic
             {
                 self.bgMusic!.stop()
             }
-            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showAds"), object: nil)
 
         }
         
@@ -210,14 +232,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             /* Load Game scene */
             let scene = GameScene(fileNamed:"GameScene") as GameScene!
             
-            scene.reset = true
+            scene?.reset = true
 
             
             /* Ensure correct aspect mode */
-            scene.scaleMode = .AspectFit//.AspectFill
+            scene?.scaleMode = .aspectFit//.AspectFill
             
             /* Restart game scene */
-            skView.presentScene(scene)
+            skView?.presentScene(scene)
             
             
             self.reset = true
@@ -227,24 +249,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //play button action
         playButton.selectedHandler = {
             
-            self.gameState = .Active
-            self.playButton.hidden = true
-            self.soundButton.hidden = true
-            self.playButton.state = .Hidden
-            self.pauseButton.state = .Active
-            self.pauseButton.hidden = false
-            self.replayButton.hidden = true
-            self.replayButton.state = .Hidden
+            self.gameState = .active
+            self.playButton.isHidden = true
+            self.soundButton.isHidden = true
+            self.playButton.state = .hidden
+            self.pauseButton.state = .active
+            self.pauseButton.isHidden = false
+            self.replayButton.isHidden = true
+            self.replayButton.state = .hidden
             self.physicsWorld.speed = 1
-            self.highScoreLabel.hidden = true
-            self.highScoreLabel2.hidden = true
-            self.paused = false
+            self.highScoreLabel.isHidden = true
+            self.highScoreLabel2.isHidden = true
+            self.isPaused = false
             if playSound == true
             {
                 self.startBackgroundMusic()
             }
                         
-            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "hideAds"), object: nil)
         }
         
         
@@ -253,7 +275,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
 
         //mute music preference stored
-        if let bool = NSUserDefaults.standardUserDefaults().objectForKey("playSound") as! Bool?
+        if let bool = UserDefaults.standard.object(forKey: "playSound") as! Bool?
         {
             playSound = bool
         } else
@@ -277,17 +299,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func spawnBoss() {
         
-        hero.physicsBody!.dynamic = false
+        hero.physicsBody!.isDynamic = false
         
         //move to firefighter to locked y position
-        hero.runAction(SKAction.moveTo(CGPoint(x: hero.position.x, y: self.frame.height * 0.1), duration: 1))
+        hero.run(SKAction.move(to: CGPoint(x: hero.position.x, y: self.frame.height * 0.1), duration: 1))
         //hero.position.y = (self.frame.height * 0.1)
         
         //load fireboss
-        let bossPath = NSBundle.mainBundle().pathForResource("fireBoss", ofType: "sks")
-        let bossNode = SKReferenceNode (URL: NSURL (fileURLWithPath: bossPath!))
-        let moveLeft = SKAction.moveToX(0, duration: 1.4)
-        let moveRight = SKAction.moveToX(300, duration: 1.4)
+        let bossPath = Bundle.main.path(forResource: "fireBoss", ofType: "sks")
+        let bossNode = SKReferenceNode (url: URL (fileURLWithPath: bossPath!))
+        let moveLeft = SKAction.moveTo(x: 0, duration: 1.4)
+        let moveRight = SKAction.moveTo(x: 300, duration: 1.4)
         self.addChild(bossNode)
         
         let shootCommand = SKSpriteNode(imageNamed: "swipeUp")
@@ -295,25 +317,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         shootCommand.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
         shootCommand.setScale(0.5)
         shootCommand.zPosition = 4
-        shootCommand.runAction(SKAction.sequence([
-            SKAction.fadeInWithDuration(0.5),
-            SKAction.waitForDuration(0.5),
-            SKAction.fadeOutWithDuration(0.5),
-            SKAction.fadeInWithDuration(0.5),
-            SKAction.waitForDuration(0.5),
-            SKAction.fadeOutWithDuration(0.5),
-            SKAction.fadeInWithDuration(0.5),
-            SKAction.waitForDuration(0.5),
-            SKAction.fadeOutWithDuration(0.5),
+        shootCommand.run(SKAction.sequence([
+            SKAction.fadeIn(withDuration: 0.5),
+            SKAction.wait(forDuration: 0.5),
+            SKAction.fadeOut(withDuration: 0.5),
+            SKAction.fadeIn(withDuration: 0.5),
+            SKAction.wait(forDuration: 0.5),
+            SKAction.fadeOut(withDuration: 0.5),
+            SKAction.fadeIn(withDuration: 0.5),
+            SKAction.wait(forDuration: 0.5),
+            SKAction.fadeOut(withDuration: 0.5),
             SKAction.removeFromParent()
             ]))
         
         bossNode.position = CGPoint(x: self.frame.width/2,y: 600)
-        bossNode.runAction(SKAction.sequence([(SKAction.moveToY(self.frame.height * 0.85, duration: 2)),
-            SKAction.repeatActionForever(SKAction.sequence([moveLeft, moveRight]))]))
+        bossNode.run(SKAction.sequence([(SKAction.moveTo(y: self.frame.height * 0.85, duration: 2)),
+            SKAction.repeatForever(SKAction.sequence([moveLeft, moveRight]))]))
         
         let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action:#selector(GameScene.swipe(_:)))
-        swipeUp.direction = .Up
+        swipeUp.direction = .up
         self.view!.addGestureRecognizer(swipeUp)
         self.boss = bossNode
     }
@@ -328,82 +350,82 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     //call for audio player
-    func setupAudioPlayerWithFile(file:NSString, type:NSString) -> AVAudioPlayer?  {
+    func setupAudioPlayerWithFile(_ file:NSString, type:NSString) -> AVAudioPlayer?  {
         
-        let soundFilePath = NSBundle.mainBundle().pathForResource("musicbyMicahVellian", ofType: "wav")
-        let soundFileURL = NSURL(fileURLWithPath: soundFilePath!)
+        let soundFilePath = Bundle.main.path(forResource: "musicbyMicahVellian", ofType: "wav")
+        let soundFileURL = URL(fileURLWithPath: soundFilePath!)
         
         var audioPlayer: AVAudioPlayer?
         
         do {
-            try audioPlayer = AVAudioPlayer(contentsOfURL: soundFileURL)
+            try audioPlayer = AVAudioPlayer(contentsOf: soundFileURL)
         } catch {
             print("Player not available")
         }
         return audioPlayer
     }
     
-    func swipe(sender:UISwipeGestureRecognizer){
+    func swipe(_ sender:UISwipeGestureRecognizer){
         
-        var swipeLocation: CGPoint = sender.locationInView(sender.view)
-        swipeLocation = self.convertPointFromView(swipeLocation)
+        var swipeLocation: CGPoint = sender.location(in: sender.view)
+        swipeLocation = self.convertPoint(fromView: swipeLocation)
         
-        let blastPath = NSBundle.mainBundle().pathForResource("extinguisher", ofType: "sks")
-        let blastNode = SKReferenceNode (URL: NSURL (fileURLWithPath: blastPath!))
+        let blastPath = Bundle.main.path(forResource: "extinguisher", ofType: "sks")
+        let blastNode = SKReferenceNode (url: URL (fileURLWithPath: blastPath!))
         
         if blastTimer >= 0.5 {
             self.addChild(blastNode)
             
             blastNode.zPosition = 3
-            blastNode.position = CGPointMake(hero.position.x, (self.frame.height * 0.11))
+            blastNode.position = CGPoint(x: hero.position.x, y: (self.frame.height * 0.11))
             
-            blastNode.runAction(SKAction.sequence([
+            blastNode.run(SKAction.sequence([
                 
-                SKAction.moveToY(600, duration: 1),
-                SKAction.waitForDuration(3),
+                SKAction.moveTo(y: 600, duration: 1),
+                SKAction.wait(forDuration: 3),
                 SKAction.removeFromParent()
                 ]))
-            hero.removeActionForKey("move")
+            hero.removeAction(forKey: "move")
 
             blastTimer = 0
         }
         
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
 
         /* Disable touch if game state is not active */
-        if gameState != .Active { return }
+        if gameState != .active { return }
         
-        hero.physicsBody?.velocity = CGVectorMake(0, 0)
-        hero.physicsBody?.applyForce(CGVectorMake(0.0, 10.0))
+        hero.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        hero.physicsBody?.applyForce(CGVector(dx: 0.0, dy: 10.0))
         
         
         //runner mode controls
         
             for touch in touches {
-                let location = touch.locationInNode(self)
-                if move == .None
+                let location = touch.location(in: self)
+                if move == .none
                 {
                     if location.x >= self.size.width / 2
                     {
-                        move = .Left
+                        move = .left
                     } else if location.x <= self.size.width / 2
                     {
-                        move = .Right
+                        move = .right
                     }
                 }
             }
             /* Called when a touch begins */
             switch move
             {
-                case .None:
+                case .none:
                     break
-                case .Right:
-                    move = .Left
-                case .Left:
-                    move = .Right
+                case .right:
+                    move = .left
+                case .left:
+                    move = .right
             }
             
             //controls for boss level
@@ -411,33 +433,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     
    
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         /* Disable touch if game state is not active */
-        if gameState != .Active { return }
+        if gameState != .active { return }
         //let moveAction = "moveAction"
-        hero.physicsBody?.velocity = CGVectorMake(0, 0)
+        hero.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         
 
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         /* Disable touch if game state is not active */
-        if gameState != .Active { return }
+        if gameState != .active { return }
         
-        hero.physicsBody?.velocity = CGVectorMake(0, 0)
+        hero.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         
 
     }
     
     
-    override func update(currentTime: CFTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         
         
         /* Skip game update if game no longer active */
-        if gameState != .Active { return }
-        hero.physicsBody?.applyForce(CGVectorMake(0.0, heroForce))
+        if gameState != .active { return }
+        hero.physicsBody?.applyForce(CGVector(dx: 0.0, dy: heroForce))
         hero.position.x.clamp(10, 310)
         hero.position.y.clamp(0, 560)
         sinceTouch += fixedDelta
@@ -453,9 +475,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
-        if (move == .Left) {
+        if (move == .left) {
             hero.position.x -= moveSpeed * CGFloat(fixedDelta)
-        } else if (move == .Right) {
+        } else if (move == .right) {
             hero.position.x += moveSpeed * CGFloat(fixedDelta)
         }
         
@@ -467,30 +489,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         //store new high score and display high score
-        if points > NSUserDefaults.standardUserDefaults().integerForKey("highScoreLabel") && cheating == false {
+        if points > UserDefaults.standard.integer(forKey: "highScoreLabel") && cheating == false {
             
             if boolHighScore == false {
-                let congrats = NSBundle.mainBundle().pathForResource("newHighScore", ofType: "sks")
-                let newHighScore = SKReferenceNode (URL: NSURL (fileURLWithPath: congrats!))
+                let congrats = Bundle.main.path(forResource: "newHighScore", ofType: "sks")
+                let newHighScore = SKReferenceNode (url: URL (fileURLWithPath: congrats!))
                 
                 self.addChild(newHighScore)
                 newHighScore.zPosition = 1
                 newHighScore.position = CGPoint(x: 0, y: self.size.height/2)
-                newHighScore.runAction(SKAction.sequence([
-                    SKAction.fadeInWithDuration(0.5),
-                    SKAction.fadeOutWithDuration(1),
+                newHighScore.run(SKAction.sequence([
+                    SKAction.fadeIn(withDuration: 0.5),
+                    SKAction.fadeOut(withDuration: 1),
                     SKAction.removeFromParent()
                     ]))
                 boolHighScore = true
             }
             
-            NSUserDefaults.standardUserDefaults().setInteger(points, forKey: "highScoreLabel")
-            NSUserDefaults.standardUserDefaults().setInteger(points, forKey: "highScoreLabel2")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(points, forKey: "highScoreLabel")
+            UserDefaults.standard.set(points, forKey: "highScoreLabel2")
+            UserDefaults.standard.synchronize()
         }
         
-        highScoreLabel.text = "High Score: " + String(NSUserDefaults.standardUserDefaults().integerForKey("highScoreLabel"))
-        highScoreLabel2.text = "High Score: " + String(NSUserDefaults.standardUserDefaults().integerForKey("highScoreLabel2"))
+        highScoreLabel.text = "High Score: " + String(UserDefaults.standard.integer(forKey: "highScoreLabel"))
+        highScoreLabel2.text = "High Score: " + String(UserDefaults.standard.integer(forKey: "highScoreLabel2"))
         
         
     }
@@ -500,14 +522,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scrollLayer.position.y -= scrollSpeed * CGFloat(fixedDelta)
         
         //obstacle scroll
-        obstacleLayer = self.childNodeWithName("obstacleLayer")!
-        variableLayer = self.childNodeWithName("variableLayer")!
+        obstacleLayer = self.childNode(withName: "obstacleLayer")!
+        variableLayer = self.childNode(withName: "variableLayer")!
         
         //loop scroll layer nodes
         for ground in scrollLayer.children as! [SKSpriteNode] {
             
             //get ground node position, convert node position to scene space
-            let floorPosition = scrollLayer.convertPoint(ground.position, toNode: self)
+            let floorPosition = scrollLayer.convert(ground.position, to: self)
             //let instrucPosition = scrollLayer.convertPoint(ground.position, toNode: self)
             
             //check ground position has left scene
@@ -544,25 +566,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if fireBallTimer > 0 {
             fireBallTimer -= fixedDelta
             if fireBallTimer < 0 {
-                let fireBallPath = NSBundle.mainBundle().pathForResource("fireball", ofType: "sks")
-                let fireBallNode = SKReferenceNode (URL: NSURL (fileURLWithPath: fireBallPath!))
+                let fireBallPath = Bundle.main.path(forResource: "fireball", ofType: "sks")
+                let fireBallNode = SKReferenceNode (url: URL (fileURLWithPath: fireBallPath!))
                 self.addChild(fireBallNode)
                 fireBallNode.zPosition = 3
                 
-                fireBallNode.runAction(SKAction.sequence([
-                    SKAction.waitForDuration(3),
+                fireBallNode.run(SKAction.sequence([
+                    SKAction.wait(forDuration: 3),
                     SKAction.removeFromParent()
                     ]))
                 
                 if self.boss == nil {
-                    fireBallNode.position = CGPointMake(CGFloat.random(min: 20, max:300), 568)
+                    fireBallNode.position = CGPoint(x: CGFloat.random(min: 20, max:300), y: 568)
                 }
                 else {
                     // boss mode
                     
                     fireBallNode.position = CGPoint(x: boss.position.x, y: boss.position.y - 50)
                     fireBallTimer = Double(CGFloat.random())
-                    boss.childNodeWithName("//boss")!.runAction(SKAction(named: "bossShoot")!)
+                    boss.childNode(withName: "//boss")!.run(SKAction(named: "bossShoot")!)
 
                 }
             }
@@ -583,13 +605,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if babyTimer > 0 {
                 babyTimer -= fixedDelta
                 if babyTimer < 0 {
-                    let babyPath = NSBundle.mainBundle().pathForResource("baby", ofType: "sks")
-                    let babyNode = SKReferenceNode (URL: NSURL (fileURLWithPath: babyPath!))
-                    let randomBabyPosition = CGPointMake(CGFloat.random(min: 40, max: 280), 556)
+                    let babyPath = Bundle.main.path(forResource: "baby", ofType: "sks")
+                    let babyNode = SKReferenceNode (url: URL (fileURLWithPath: babyPath!))
+                    let randomBabyPosition = CGPoint(x: CGFloat.random(min: 40, max: 280), y: 556)
                     obstacleLayer.addChild(babyNode)
                     babyNode.name = "baby"
                     babyNode.zPosition = 1
-                    babyNode.position = self.convertPoint(randomBabyPosition, toNode: obstacleLayer)
+                    babyNode.position = self.convert(randomBabyPosition, to: obstacleLayer)
 
                 }
             }
@@ -616,7 +638,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             for obstacle in obstacleLayer.children as! [SKReferenceNode] {
                 
                 /* Get obstacle node position, convert node position to scene space */
-                let obstaclePosition = obstacleLayer.convertPoint(obstacle.position, toNode: self)
+                let obstaclePosition = obstacleLayer.convert(obstacle.position, to: self)
                 
                 /* Check if obstacle has left the scene */
                 if obstaclePosition.y <= -20 {
@@ -626,7 +648,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if obstacle.name == "baby" {
                         
                         
-                        self.runAction(SKAction.playSoundFileNamed("screamingBaby", waitForCompletion: false))
+                        self.run(SKAction.playSoundFileNamed("screamingBaby", waitForCompletion: false))
                         
                         print("wah")
                         babyCounter = 0
@@ -643,7 +665,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             for variableObstacle in variableLayer.children as! [SKReferenceNode] {
                 
                 /* Get obstacle node position, convert node position to scene space */
-                let variablePosition = variableLayer.convertPoint(variableObstacle.position, toNode: self)
+                let variablePosition = variableLayer.convert(variableObstacle.position, to: self)
                 
                 /* Check if obstacle has left the scene */
                 if variablePosition.y <= -20 {
@@ -689,28 +711,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let filenames = ["twoMidCB", "twoEndCB", "rightEndWallCB", "leftEndWallCB", "threeMidCO", "threeEndCO", "twoLMidCO", "twoRMidCO", "variableWall2"]
                 
                 // represent the selected obstacle from array
-                let filename = filenames[random() % filenames.count]
+                let filename = filenames[Int(arc4random()) % filenames.count]
                 
                 //set variable wall position
                 if filename == "variableWall2" {
                     
-                    let resourcePath = NSBundle.mainBundle().pathForResource(filename, ofType: "sks")
-                    let randomPosition = CGPointMake( CGFloat.random(min: -270, max: 0), 568)
+                    let resourcePath = Bundle.main.path(forResource: filename, ofType: "sks")
+                    let randomPosition = CGPoint( x: CGFloat.random(min: -270, max: 0), y: 568)
                     
-                    let newObstacle = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
+                    let newObstacle = SKReferenceNode (url: URL (fileURLWithPath: resourcePath!))
 
                     obstacleLayer.addChild(newObstacle)
-                    newObstacle.position = self.convertPoint(randomPosition, toNode: variableLayer)
+                    newObstacle.position = self.convert(randomPosition, to: variableLayer)
                     spawnTimer = 0
                 }
                 //send in the other walls
                 else {
-                let resourcePath = NSBundle.mainBundle().pathForResource(filename, ofType: "sks")
-                let newObstacle = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
+                let resourcePath = Bundle.main.path(forResource: filename, ofType: "sks")
+                let newObstacle = SKReferenceNode (url: URL (fileURLWithPath: resourcePath!))
                 obstacleLayer.addChild(newObstacle)
                 
                 /* Convert new node position back to obstacle layer space */
-                newObstacle.position = self.convertPoint(CGPoint(x: 0.0, y: 568.0), toNode: obstacleLayer)
+                newObstacle.position = self.convert(CGPoint(x: 0.0, y: 568.0), to: obstacleLayer)
                 
                 // Reset spawn timer
                 spawnTimer = 0
@@ -721,18 +743,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     //smoke wall spawn rate
                     if Float(smokeTimer) >= randomFire {
-                        let moveLeft = SKAction.moveToX(-180, duration: 1.4)
-                        let moveRight = SKAction.moveToX(340, duration: 1.4)
+                        let moveLeft = SKAction.moveTo(x: -180, duration: 1.4)
+                        let moveRight = SKAction.moveTo(x: 340, duration: 1.4)
                         
-                        let firePath = NSBundle.mainBundle().pathForResource("fireWall", ofType: "sks")
+                        let firePath = Bundle.main.path(forResource: "fireWall", ofType: "sks")
                         
-                        let fireWall = SKReferenceNode (URL: NSURL (fileURLWithPath: firePath!))
-                        fireWall.runAction(SKAction.repeatActionForever(SKAction.sequence([moveLeft, moveRight])))
+                        let fireWall = SKReferenceNode (url: URL (fileURLWithPath: firePath!))
+                        fireWall.run(SKAction.repeatForever(SKAction.sequence([moveLeft, moveRight])))
 
                         variableLayer.addChild(fireWall)
                         /* Generate new obstacle position, start just outside screen and with a random x value */
-                        let randomPosition = CGPointMake( CGFloat.random(min: 0, max: 340), 569)
-                        fireWall.position = self.convertPoint(randomPosition, toNode: variableLayer)
+                        let randomPosition = CGPoint( x: CGFloat.random(min: 0, max: 340), y: 569)
+                        fireWall.position = self.convert(randomPosition, to: variableLayer)
                         smokeTimer = 0
                         
                     }
@@ -745,7 +767,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     
-    func didBeginContact(contact: SKPhysicsContact) {
+    func didBegin(_ contact: SKPhysicsContact) {
         
         /* Get references to bodies involved in collision */
         let contactA:SKPhysicsBody = contact.bodyA
@@ -780,12 +802,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             /* Change game state to game over */
-            gameState = .GameOver
+            gameState = .gameOver
             self.removeAllActions()
-            
-            let heroDeath = SKAction.runBlock({
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showInterstitial"), object: nil)
+            let heroDeath = SKAction.run({
                 
-                self.runAction(SKAction.playSoundFileNamed("zachFail", waitForCompletion: false))
+                self.run(SKAction.playSoundFileNamed("zachFail", waitForCompletion: false))
                 /* Put our hero face down in the dirt */
                 self.hero.zRotation = CGFloat(-90).degreesToRadians()
                 /* Stop hero from colliding with anything else */
@@ -796,7 +818,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //end music
             
             /* Create our hero death action */
-            hero.runAction(heroDeath)
+            hero.run(heroDeath)
             
             /* Load the shake action resource */
             let shakeScene:SKAction = SKAction.init(named: "Shake")!
@@ -805,18 +827,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             for node in self.children {
                 
                 /* Apply effect each ground node */
-                node.runAction(shakeScene)
+                node.run(shakeScene)
                 
             }
-            pauseButton.hidden = true
-            replayButton.hidden = false
-            replayButton.state = .Active
-            playButton.hidden = true
-            playButton.state = .Hidden
-            self.highScoreLabel.hidden = false
-            self.highScoreLabel2.hidden = false
-            self.soundButton.hidden = false
-            if self.bgMusic?.playing == true
+            pauseButton.isHidden = true
+            replayButton.isHidden = false
+            replayButton.state = .active
+            playButton.isHidden = true
+            playButton.state = .hidden
+            self.highScoreLabel.isHidden = false
+            self.highScoreLabel2.isHidden = false
+            self.soundButton.isHidden = false
+            if self.bgMusic?.isPlaying == true
             {
                 self.bgMusic!.stop()
             }
@@ -854,18 +876,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 hunnid.position = babyPosition!
                 hunnid.setScale(0.7)
                 hunnid.zPosition = 4
-                hunnid.runAction(SKAction.sequence([
-                    SKAction.moveToY(babyPosition!.y + (20), duration: 1),
+                hunnid.run(SKAction.sequence([
+                    SKAction.moveTo(y: babyPosition!.y + (20), duration: 1),
                     //SKAction.waitForDuration(1),
-                    SKAction.fadeOutWithDuration(0.5),
+                    SKAction.fadeOut(withDuration: 0.5),
                     SKAction.removeFromParent()
                     ]))
                 
                 let seconds = 4.0
                 let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
-                let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                let dispatchTime = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
                 
-                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                     
                     self.scrollSpeed += 40
                     self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -3.8)
@@ -877,7 +899,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 physicsWorld.gravity = CGVector(dx: 0.0, dy: -1.8)
                 babyCounter += 1
                 if babyCounter < 3 {
-                    self.runAction(SKAction.playSoundFileNamed("screamingPaul", waitForCompletion: false))
+                    self.run(SKAction.playSoundFileNamed("screamingPaul", waitForCompletion: false))
                 }
                 print(babyCounter)
                 
@@ -890,11 +912,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.hero.physicsBody!.collisionBitMask = 0
                     self.hero.physicsBody!.contactTestBitMask = 0
                     
-                    hero.runAction(SKAction.sequence([
+                    hero.run(SKAction.sequence([
                         SKAction.playSoundFileNamed("Elieee", waitForCompletion: false),
 
                         SKAction.init(named: "3babies")!,
-                        SKAction.runBlock({
+                        SKAction.run({
                             self.hero.physicsBody!.collisionBitMask = 7
                             self.hero.physicsBody!.contactTestBitMask = 4294967295
                         })
@@ -908,7 +930,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         } else if (nodeA.name == "blast" && nodeB.name == "fireball") || (nodeB.name == "blast" && nodeA.name == "fireball") {
         
-            self.runAction(SKAction.playSoundFileNamed("jACKsss", waitForCompletion: false))
+            self.run(SKAction.playSoundFileNamed("jACKsss", waitForCompletion: false))
 
             if nodeA.name == "blast" {
                 nodeA.parent!.parent!.removeFromParent()
@@ -926,9 +948,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     hitPosition = nodeA.parent!.parent!.position
 
                     points += 100
-                    nodeA.runAction(SKAction(named: "hit")!)
-                    self.runAction(SKAction.playSoundFileNamed("jACKsss", waitForCompletion: false))
-                    self.runAction(SKAction.playSoundFileNamed("olJack", waitForCompletion: false))
+                    nodeA.run(SKAction(named: "hit")!)
+                    self.run(SKAction.playSoundFileNamed("jACKsss", waitForCompletion: false))
+                    self.run(SKAction.playSoundFileNamed("olJack", waitForCompletion: false))
 
                     scoreLabel.text = String(points)
                     scoreLabel2.text = String(points)
@@ -938,10 +960,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     hunnid.position = hitPosition!
                     hunnid.setScale(0.7)
                     hunnid.zPosition = 10
-                    hunnid.runAction(SKAction.sequence([
-                        SKAction.moveToY(hitPosition!.y + (100), duration: 1),
+                    hunnid.run(SKAction.sequence([
+                        SKAction.moveTo(y: hitPosition!.y + (100), duration: 1),
                         //SKAction.waitForDuration(1),
-                        SKAction.fadeOutWithDuration(0.5),
+                        SKAction.fadeOut(withDuration: 0.5),
                         SKAction.removeFromParent()
                         ]))
                     bossHitTimer = 0
@@ -951,9 +973,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     hitPosition = nodeB.parent!.parent!.position
                  
                     points += 100
-                    nodeB.runAction(SKAction(named: "hit")!)
-                    self.runAction(SKAction.playSoundFileNamed("jACKsss", waitForCompletion: false))
-                    self.runAction(SKAction.playSoundFileNamed("olJack", waitForCompletion: false))
+                    nodeB.run(SKAction(named: "hit")!)
+                    self.run(SKAction.playSoundFileNamed("jACKsss", waitForCompletion: false))
+                    self.run(SKAction.playSoundFileNamed("olJack", waitForCompletion: false))
 
                     scoreLabel.text = String(points)
                     scoreLabel2.text = String(points)
@@ -962,10 +984,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     hunnid.position = hitPosition!
                     hunnid.setScale(0.7)
                     hunnid.zPosition = 4
-                    hunnid.runAction(SKAction.sequence([
-                        SKAction.moveToY(hitPosition!.y + (100), duration: 2),
+                    hunnid.run(SKAction.sequence([
+                        SKAction.moveTo(y: hitPosition!.y + (100), duration: 2),
                         //SKAction.waitForDuration(1),
-                        SKAction.fadeOutWithDuration(0.5),
+                        SKAction.fadeOut(withDuration: 0.5),
                         SKAction.removeFromParent()
                         ]))
                     bossHitTimer = 0
