@@ -8,6 +8,9 @@
 
 import Foundation
 import SpriteKit
+import FBSDKCoreKit
+import FBSDKShareKit
+import FBSDKLoginKit
 
 var playSound:Bool!
 var cheating:Bool!
@@ -21,10 +24,12 @@ class MainScene: SKScene {
     /* UI Connections */
     var buttonPlay: MSButtonNode!
     
+    static var playerProfile = Profile()
+    
     override func didMove(to view: SKView) {
         
         self.view?.isMultipleTouchEnabled = false
-
+        
         
         baby1 = self.childNode(withName: "baby1") as! SKSpriteNode
         baby2 = self.childNode(withName: "baby2") as! SKSpriteNode
@@ -74,11 +79,31 @@ class MainScene: SKScene {
             /* Start game scene */
             skView?.presentScene(scene)
         }
-        
+        if (FBSDKAccessToken.current() != nil) {
+            
+            
+            
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, first_name, last_name"]).start(completionHandler: { (connection, result, error) -> Void in
+                if (error == nil){
+                    
+                    /* Update player profile */
+                    let dictResult = result as? NSDictionary
+                    MainScene.playerProfile.facebookId = dictResult?["id"] as! String
+                    let firstName = dictResult?["first_name"] as! String
+                    let lastName = dictResult?["last_name"] as! String
+
+                    MainScene.playerProfile.name = firstName + " " + lastName
+                    
+                    print("\n\n\n\(MainScene.playerProfile)\n\n\n")
+                    
+                    
+                }
+            })
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        
         for touch in touches {
             
             let location = touch.location(in: self)
@@ -146,10 +171,10 @@ class MainScene: SKScene {
                 UserDefaults.standard.set(0, forKey: "highScoreLabel")
                 UserDefaults.standard.set(0, forKey: "highScoreLabel2")
                 UserDefaults.standard.synchronize()
-
+                
                 /* Start game scene */
                 skView?.presentScene(scene)
-
+                
             }
             
             if about.contains(location) {

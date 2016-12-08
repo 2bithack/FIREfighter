@@ -7,8 +7,17 @@
 //
 
 import SpriteKit
+import Firebase
+import FirebaseDatabase
+import FBSDKCoreKit
+import FBSDKShareKit
+import FBSDKLoginKit
+
 import Foundation
 import AVFoundation
+
+
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -29,10 +38,24 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-
+/* Social profile structure */
+struct Profile {
+    var name = ""
+    var imgURL = ""
+    var facebookId = ""
+    var score = 0
+}
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
    
+    /* High score custom dictionary */
+    var topScores: [Profile]!
+    
+    /* Firebase connection */
+//    let firebaseRef = FIRDatabase.database().reference(withPath: "highscore")
+    let firebaseRef = FIRDatabase.database().reference().child("highscore")
+    
+    
     enum GameSceneState {
         case active, gameOver, pause
     }
@@ -115,8 +138,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func didMove(to view: SKView) {
-        
+       
+        firebaseRef.queryOrdered(byChild: "score").queryLimited(toLast: 5).observe(.value, with: { snapshot in
+            
+            /* Check snapshot has results */
+            if snapshot.exists() {
+                
+                /* Loop through data entries */
+                self.topScores = []
 
+                for child in snapshot.children {
+                    
+                    /* Create new player profile */
+                    var profile = Profile()
+                                        
+                    /* Assign player name */
+                    profile.name = (child as AnyObject).key
+                    let valueDict = snapshot.childSnapshot(forPath: profile.name).value as! [String: AnyObject]
+                    
+                    /* Assign profile data */
+                    //profile.imgURL = valueDict["image"] as! String
+                    profile.score = valueDict["score"] as! Int
+                    profile.facebookId = valueDict["id"] as! String
+                    /* Add new high score profile to score tower using score as index */
+                    
+                    self.topScores.append(profile)
+                    
+                    print("\n\n\n\(profile.score)\n\n\n")
+                }
+            }
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadAds"), object: nil)
         
@@ -151,6 +205,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         soundButton.isHidden = true
 
+        
+        highScoreLabel.text = "High Score: " + String(UserDefaults.standard.integer(forKey: "highScoreLabel"))
+        highScoreLabel2.text = "High Score: " + String(UserDefaults.standard.integer(forKey: "highScoreLabel2"))
 //button settings to load game on fresh start and different settings when reset
         
         if self.reset == false {
@@ -293,7 +350,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.soundButton.texture = SKTexture(imageNamed: "soundOFF")
             
         }
-
+        
+        GameViewController.loginButton.isHidden = true
         
     }
     
@@ -481,13 +539,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             hero.position.x += moveSpeed * CGFloat(fixedDelta)
         }
         
-        if points > Int(highScoreLabel.text!) {
-            highScoreLabel.text = String(points)
-            highScoreLabel2.text = String(points)
-            
-
-            
-        }
+//        if points > Int(highScoreLabel.text!) {
+//            highScoreLabel.text = String(points)
+//            highScoreLabel2.text = String(points)
+//            
+//
+//            
+//        }
         //store new high score and display high score
         if points > UserDefaults.standard.integer(forKey: "highScoreLabel") && cheating == false {
             
@@ -506,13 +564,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 boolHighScore = true
             }
             
-            UserDefaults.standard.set(points, forKey: "highScoreLabel")
-            UserDefaults.standard.set(points, forKey: "highScoreLabel2")
-            UserDefaults.standard.synchronize()
+//            UserDefaults.standard.set(points, forKey: "highScoreLabel")
+//            UserDefaults.standard.set(points, forKey: "highScoreLabel2")
+//            UserDefaults.standard.synchronize()
         }
         
-        highScoreLabel.text = "High Score: " + String(UserDefaults.standard.integer(forKey: "highScoreLabel"))
-        highScoreLabel2.text = "High Score: " + String(UserDefaults.standard.integer(forKey: "highScoreLabel2"))
+//        highScoreLabel.text = "High Score: " + String(UserDefaults.standard.integer(forKey: "highScoreLabel"))
+//        highScoreLabel2.text = "High Score: " + String(UserDefaults.standard.integer(forKey: "highScoreLabel2"))
         
         
     }
@@ -842,6 +900,79 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             {
                 self.bgMusic!.stop()
             }
+            
+            //save score
+            if points > UserDefaults.standard.integer(forKey: "highScoreLabel")  && cheating == false {
+                UserDefaults.standard.set(points, forKey: "highScoreLabel")
+                UserDefaults.standard.set(points, forKey: "highScoreLabel2")
+                UserDefaults.standard.synchronize()
+                
+                highScoreLabel.text = "High Score: " + String(points)
+                highScoreLabel2.text = "High Score: " + String(points)
+                
+                // print(playerProfile)
+                if !MainScene.playerProfile.facebookId.isEmpty {
+                    
+                    //* Update profile score */
+                    MainScene.playerProfile.score = points
+                    
+                    /* Build data structure to be saved to firebase */
+                    let saveProfile = [MainScene.playerProfile.name :
+                        ["score" : MainScene.playerProfile.score,
+                         "id" : MainScene.playerProfile.facebookId ]]
+                    
+                    /* Save to Firebase */
+                    firebaseRef.updateChildValues(saveProfile, withCompletionBlock: {
+                        (error:Error?, ref:FIRDatabaseReference!) in
+                        if (error != nil) {
+                            print("\n\n\nData save failed: \(error)\n\n\n")
+                        } else {
+                            print("\n\n\nData saved success\n\n\n")
+                            
+                            var y = self.highScoreLabel.position.y - 60
+                            for index in stride(from: self.topScores.count - 1, through: 0, by: -1) {
+                                print("\n\n\n\(index)\n\n\n")
+                                let player = self.topScores[index]
+                                let highScore = player.score
+                                let scoreLabel = SKLabelNode(fontNamed: "8-bit pusab")
+                                scoreLabel.fontSize = 14
+                                scoreLabel.color = SKColor.black
+                                scoreLabel.position.y = y
+                                scoreLabel.position.x = self.size.width * 0.5
+                                scoreLabel.text = "\(player.name): \(highScore)"
+                                scoreLabel.zPosition = 5
+                                //print("\(player.name): \(highScore)")
+                                self.addChild(scoreLabel)
+                                y -= 24
+                            }
+                        }
+                    })
+                    
+                }
+            }
+            else {
+                var y = self.highScoreLabel.position.y - 60
+                for index in stride(from: self.topScores.count - 1, through: 0, by: -1) {
+                    print("\n\n\n\(index)\n\n\n")
+                    let player = self.topScores[index]
+                    let highScore = player.score
+                    let scoreLabel = SKLabelNode(fontNamed: "8-bit pusab")
+                    scoreLabel.fontSize = 14
+                    scoreLabel.color = SKColor.black
+                    scoreLabel.position.y = y
+                    scoreLabel.position.x = self.size.width * 0.5
+                    scoreLabel.text = "\(player.name): \(highScore)"
+                    scoreLabel.zPosition = 5
+                    //print("\(player.name): \(highScore)")
+                    self.addChild(scoreLabel)
+                    y -= 24
+                }
+            }
+            
+            
+            //display topscores
+            
+            
             
             /* We can return now */
             return

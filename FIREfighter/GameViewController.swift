@@ -9,9 +9,13 @@
 import UIKit
 import SpriteKit
 import GoogleMobileAds
+import FBSDKLoginKit
 
 class GameViewController: UIViewController, GADBannerViewDelegate {
-
+    
+    
+    static var loginButton: FBSDKLoginButton = FBSDKLoginButton()
+    
     var bannerView:GADBannerView!
     var interstitial:GADInterstitial!
     
@@ -19,6 +23,7 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         NotificationCenter.default.addObserver(self, selector: #selector(GameViewController.loadAds), name: NSNotification.Name(rawValue: "loadAds"), object: nil)
@@ -43,6 +48,11 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
             
             skView.presentScene(scene)
         }
+        
+        
+        GameViewController.loginButton.center.x = self.view.center.x
+        GameViewController.loginButton.center.y = self.view.center.y + CGFloat(300)
+        self.view!.addSubview(GameViewController.loginButton)
     }
 
     func loadAds(){

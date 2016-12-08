@@ -19,6 +19,9 @@ class CreditsScene: SKScene {
         self.view?.isMultipleTouchEnabled = false
         
         back = self.childNode(withName: "back") as! SKSpriteNode
+        
+        GameViewController.loginButton.isHidden = true
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

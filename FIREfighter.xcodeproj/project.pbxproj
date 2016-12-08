@@ -36,7 +36,6 @@
 		4A25894C1D46A5A7005AB87A /* GameEffects.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A25894B1D46A5A7005AB87A /* GameEffects.sks */; };
 		4A6103761D4811CC002294BE /* smokeParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A6103751D4811CC002294BE /* smokeParticle.sks */; };
 		4A6C102F1D54DE3300E3C70D /* 8-bit pusab.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C102E1D54DE3300E3C70D /* 8-bit pusab.ttf */; };
-		4A6C10311D54DF5100E3C70D /* 8-bit pusab.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C10301D54DE4100E3C70D /* 8-bit pusab.ttf */; };
 		4A79373E1D583C8A0059D174 /* musicbyMicahVellian.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A79373D1D583C8A0059D174 /* musicbyMicahVellian.wav */; };
 		4AB4FA5B1D2425F0006E6632 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4FA5A1D2425F0006E6632 /* AppDelegate.swift */; };
 		4AB4FA5D1D2425F0006E6632 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AB4FA5C1D2425F0006E6632 /* GameScene.sks */; };
@@ -56,6 +55,11 @@
 		4AE6FD4E1D5A294900E96AAA /* FirefighterIntro.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4AE6FD4D1D5A294900E96AAA /* FirefighterIntro.wav */; };
 		4AF85CCB1D62A2B6003AC83A /* CreditsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AF85CCA1D62A2B6003AC83A /* CreditsScene.sks */; };
 		4AF85CCD1D62B6DE003AC83A /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF85CCC1D62B6DE003AC83A /* CreditsScene.swift */; };
+		4AF92F161DACA27E0074D7A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4AF92F151DACA27E0074D7A2 /* GoogleService-Info.plist */; };
+		4AF92F1F1DACB5D20074D7A2 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF92F1B1DACB5D20074D7A2 /* Bolts.framework */; };
+		4AF92F201DACB5D20074D7A2 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF92F1C1DACB5D20074D7A2 /* FBSDKCoreKit.framework */; };
+		4AF92F211DACB5D20074D7A2 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF92F1D1DACB5D20074D7A2 /* FBSDKLoginKit.framework */; };
+		4AF92F221DACB5D20074D7A2 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF92F1E1DACB5D20074D7A2 /* FBSDKShareKit.framework */; };
 		4AFD887D1D3924A200247CED /* variableWall2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD887C1D3924A200247CED /* variableWall2.sks */; };
 		4AFD88801D392B7C00247CED /* twoMidCB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD887F1D392B7C00247CED /* twoMidCB.sks */; };
 		4AFD88821D392C8600247CED /* twoEndCB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD88811D392C8600247CED /* twoEndCB.sks */; };
@@ -66,6 +70,9 @@
 		4AFD888F1D392FFD00247CED /* twoLMidCO.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD888E1D392FFD00247CED /* twoLMidCO.sks */; };
 		4AFD88911D39304F00247CED /* twoRMidCO.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFD88901D39304F00247CED /* twoRMidCO.sks */; };
 		4AFDBADA1D4FA6B500E24B46 /* fireball.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AFDBAD91D4FA6B500E24B46 /* fireball.sks */; };
+		C92EBBC80C731D2CEB16FFFB /* Pods_FIREfighterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD4EA0409EC388032A2CE27 /* Pods_FIREfighterTests.framework */; };
+		E8087F9CB5757E93D0796951 /* Pods_FIREfighterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EB0825085E05DBA2763C08 /* Pods_FIREfighterUITests.framework */; };
+		FE022C150F7E37432B5D7B73 /* Pods_FIREfighter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D92C88FA6F20E5C140F587 /* Pods_FIREfighter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,7 +122,6 @@
 		4A25894B1D46A5A7005AB87A /* GameEffects.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameEffects.sks; sourceTree = "<group>"; };
 		4A6103751D4811CC002294BE /* smokeParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smokeParticle.sks; sourceTree = "<group>"; };
 		4A6C102E1D54DE3300E3C70D /* 8-bit pusab.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "8-bit pusab.ttf"; sourceTree = "<group>"; };
-		4A6C10301D54DE4100E3C70D /* 8-bit pusab.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "8-bit pusab.ttf"; sourceTree = "<group>"; };
 		4A79373D1D583C8A0059D174 /* musicbyMicahVellian.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = musicbyMicahVellian.wav; sourceTree = "<group>"; };
 		4AB4FA571D2425F0006E6632 /* FIREfighter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FIREfighter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB4FA5A1D2425F0006E6632 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +147,11 @@
 		4AE6FD4D1D5A294900E96AAA /* FirefighterIntro.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FirefighterIntro.wav; sourceTree = "<group>"; };
 		4AF85CCA1D62A2B6003AC83A /* CreditsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CreditsScene.sks; sourceTree = "<group>"; };
 		4AF85CCC1D62B6DE003AC83A /* CreditsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
+		4AF92F151DACA27E0074D7A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4AF92F1B1DACB5D20074D7A2 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		4AF92F1C1DACB5D20074D7A2 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		4AF92F1D1DACB5D20074D7A2 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		4AF92F1E1DACB5D20074D7A2 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		4AFD887C1D3924A200247CED /* variableWall2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = variableWall2.sks; sourceTree = "<group>"; };
 		4AFD887F1D392B7C00247CED /* twoMidCB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = twoMidCB.sks; sourceTree = "<group>"; };
 		4AFD88811D392C8600247CED /* twoEndCB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = twoEndCB.sks; sourceTree = "<group>"; };
@@ -151,6 +162,15 @@
 		4AFD888E1D392FFD00247CED /* twoLMidCO.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = twoLMidCO.sks; sourceTree = "<group>"; };
 		4AFD88901D39304F00247CED /* twoRMidCO.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = twoRMidCO.sks; sourceTree = "<group>"; };
 		4AFDBAD91D4FA6B500E24B46 /* fireball.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fireball.sks; sourceTree = "<group>"; };
+		54D53F0719098C9EEA98E3A5 /* Pods-FIREfighterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIREfighterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FIREfighterUITests/Pods-FIREfighterUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		624512D5EAD99471FF78E6FA /* Pods-FIREfighterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIREfighterTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FIREfighterTests/Pods-FIREfighterTests.release.xcconfig"; sourceTree = "<group>"; };
+		7CD4EA0409EC388032A2CE27 /* Pods_FIREfighterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FIREfighterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83ED39E729A2147EB2856CFC /* Pods-FIREfighterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIREfighterUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FIREfighterUITests/Pods-FIREfighterUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A2FFD924C55C5A1206942D31 /* Pods-FIREfighter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIREfighter.release.xcconfig"; path = "Pods/Target Support Files/Pods-FIREfighter/Pods-FIREfighter.release.xcconfig"; sourceTree = "<group>"; };
+		B6EB0825085E05DBA2763C08 /* Pods_FIREfighterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FIREfighterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFB3F36E0B4B856C9AE5068F /* Pods-FIREfighter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIREfighter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FIREfighter/Pods-FIREfighter.debug.xcconfig"; sourceTree = "<group>"; };
+		D2D92C88FA6F20E5C140F587 /* Pods_FIREfighter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FIREfighter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA878F0DCFC4615FCF75B3BB /* Pods-FIREfighterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIREfighterTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FIREfighterTests/Pods-FIREfighterTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +180,8 @@
 			files = (
 				4A15AA8E1DA46E8A004749EA /* CoreGraphics.framework in Frameworks */,
 				4A15AA8C1DA46E84004749EA /* CoreLocation.framework in Frameworks */,
+				4AF92F211DACB5D20074D7A2 /* FBSDKLoginKit.framework in Frameworks */,
+				4AF92F201DACB5D20074D7A2 /* FBSDKCoreKit.framework in Frameworks */,
 				4A15AA891DA46E7B004749EA /* EventKit.framework in Frameworks */,
 				4A15AA8A1DA46E7B004749EA /* EventKitUI.framework in Frameworks */,
 				4A15AA861DA46E73004749EA /* MediaPlayer.framework in Frameworks */,
@@ -168,10 +190,13 @@
 				4A15AA801DA46E58004749EA /* SystemConfiguration.framework in Frameworks */,
 				4A15AA7E1DA46E50004749EA /* AdSupport.framework in Frameworks */,
 				4A15AA7C1DA46E4A004749EA /* AudioToolbox.framework in Frameworks */,
+				4AF92F221DACB5D20074D7A2 /* FBSDKShareKit.framework in Frameworks */,
 				4A15AA7A1DA46E35004749EA /* AVFoundation.framework in Frameworks */,
 				4A15AA781DA46E2A004749EA /* CoreTelephony.framework in Frameworks */,
 				4A15AA901DA46EC8004749EA /* GoogleMobileAds.framework in Frameworks */,
 				4A15AA761DA46E1E004749EA /* MessageUI.framework in Frameworks */,
+				FE022C150F7E37432B5D7B73 /* Pods_FIREfighter.framework in Frameworks */,
+				4AF92F1F1DACB5D20074D7A2 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +204,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C92EBBC80C731D2CEB16FFFB /* Pods_FIREfighterTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8087F9CB5757E93D0796951 /* Pods_FIREfighterUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +227,10 @@
 				4A15AA8B1DA46E84004749EA /* CoreLocation.framework */,
 				4A15AA871DA46E7B004749EA /* EventKit.framework */,
 				4A15AA881DA46E7B004749EA /* EventKitUI.framework */,
+				4AF92F1B1DACB5D20074D7A2 /* Bolts.framework */,
+				4AF92F1C1DACB5D20074D7A2 /* FBSDKCoreKit.framework */,
+				4AF92F1D1DACB5D20074D7A2 /* FBSDKLoginKit.framework */,
+				4AF92F1E1DACB5D20074D7A2 /* FBSDKShareKit.framework */,
 				4A15AA851DA46E73004749EA /* MediaPlayer.framework */,
 				4A15AA831DA46E6C004749EA /* QuartzCore.framework */,
 				4A15AA811DA46E60004749EA /* StoreKit.framework */,
@@ -209,6 +240,9 @@
 				4A15AA791DA46E35004749EA /* AVFoundation.framework */,
 				4A15AA771DA46E2A004749EA /* CoreTelephony.framework */,
 				4A15AA751DA46E1E004749EA /* MessageUI.framework */,
+				D2D92C88FA6F20E5C140F587 /* Pods_FIREfighter.framework */,
+				7CD4EA0409EC388032A2CE27 /* Pods_FIREfighterTests.framework */,
+				B6EB0825085E05DBA2763C08 /* Pods_FIREfighterUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -222,6 +256,7 @@
 				4AB4FA7D1D2425F0006E6632 /* FIREfighterUITests */,
 				4AB4FA581D2425F0006E6632 /* Products */,
 				4A15AA741DA46E1E004749EA /* Frameworks */,
+				560B6190571A21FA4390033C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -246,7 +281,6 @@
 				4A02AF031D5CD8C700413715 /* jACKsss.wav */,
 				4A02AF041D5CD8C700413715 /* olJack.wav */,
 				4A02AF051D5CD8C700413715 /* zachFail.wav */,
-				4A6C10301D54DE4100E3C70D /* 8-bit pusab.ttf */,
 				4AB4FA5A1D2425F0006E6632 /* AppDelegate.swift */,
 				4AB4FA601D2425F0006E6632 /* GameViewController.swift */,
 				4AB4FA8E1D2453C5006E6632 /* MainMenuScene.sks */,
@@ -275,6 +309,7 @@
 				4AB4FA651D2425F0006E6632 /* Assets.xcassets */,
 				4AB4FA671D2425F0006E6632 /* LaunchScreen.storyboard */,
 				4AB4FA6A1D2425F0006E6632 /* Info.plist */,
+				4AF92F151DACA27E0074D7A2 /* GoogleService-Info.plist */,
 			);
 			path = FIREfighter;
 			sourceTree = "<group>";
@@ -319,6 +354,19 @@
 			name = CenterOpenWalls;
 			sourceTree = "<group>";
 		};
+		560B6190571A21FA4390033C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CFB3F36E0B4B856C9AE5068F /* Pods-FIREfighter.debug.xcconfig */,
+				A2FFD924C55C5A1206942D31 /* Pods-FIREfighter.release.xcconfig */,
+				EA878F0DCFC4615FCF75B3BB /* Pods-FIREfighterTests.debug.xcconfig */,
+				624512D5EAD99471FF78E6FA /* Pods-FIREfighterTests.release.xcconfig */,
+				54D53F0719098C9EEA98E3A5 /* Pods-FIREfighterUITests.debug.xcconfig */,
+				83ED39E729A2147EB2856CFC /* Pods-FIREfighterUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -326,9 +374,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AB4FA831D2425F0006E6632 /* Build configuration list for PBXNativeTarget "FIREfighter" */;
 			buildPhases = (
+				151C78C4ED348774A22A1E40 /* [CP] Check Pods Manifest.lock */,
 				4AB4FA531D2425F0006E6632 /* Sources */,
 				4AB4FA541D2425F0006E6632 /* Frameworks */,
 				4AB4FA551D2425F0006E6632 /* Resources */,
+				A0B346C69BA91DE59EE683C5 /* [CP] Embed Pods Frameworks */,
+				8D5C30AF4E0ED5FA49D440C2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -343,9 +394,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AB4FA861D2425F0006E6632 /* Build configuration list for PBXNativeTarget "FIREfighterTests" */;
 			buildPhases = (
+				D31118902EC846EFE7703CE3 /* [CP] Check Pods Manifest.lock */,
 				4AB4FA6B1D2425F0006E6632 /* Sources */,
 				4AB4FA6C1D2425F0006E6632 /* Frameworks */,
 				4AB4FA6D1D2425F0006E6632 /* Resources */,
+				C1D13CAE556912D2FD7877BA /* [CP] Embed Pods Frameworks */,
+				4CA68190A2F6C1A31CA96DFB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -361,9 +415,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AB4FA891D2425F0006E6632 /* Build configuration list for PBXNativeTarget "FIREfighterUITests" */;
 			buildPhases = (
+				AF06B149A984F8439BC99242 /* [CP] Check Pods Manifest.lock */,
 				4AB4FA761D2425F0006E6632 /* Sources */,
 				4AB4FA771D2425F0006E6632 /* Frameworks */,
 				4AB4FA781D2425F0006E6632 /* Resources */,
+				5C3AE32A011574F67CCFC709 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -382,7 +438,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = GarbageGames;
 				TargetAttributes = {
 					4AB4FA561D2425F0006E6632 = {
@@ -433,9 +489,9 @@
 				4A02AEF81D5BDCA000413715 /* extinguisher.sks in Resources */,
 				4AFD888B1D392EBD00247CED /* threeMidCO.sks in Resources */,
 				4A085E141D52775F00123228 /* sparkle.sks in Resources */,
+				4AF92F161DACA27E0074D7A2 /* GoogleService-Info.plist in Resources */,
 				4AFD888F1D392FFD00247CED /* twoLMidCO.sks in Resources */,
 				4A02AF0C1D5CEE4200413715 /* Elieee.wav in Resources */,
-				4A6C10311D54DF5100E3C70D /* 8-bit pusab.ttf in Resources */,
 				4A79373E1D583C8A0059D174 /* musicbyMicahVellian.wav in Resources */,
 				4A0C3E4E1D592665000D7D3A /* screamingBaby.wav in Resources */,
 				4AF85CCB1D62A2B6003AC83A /* CreditsScene.sks in Resources */,
@@ -481,6 +537,129 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		151C78C4ED348774A22A1E40 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4CA68190A2F6C1A31CA96DFB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FIREfighterTests/Pods-FIREfighterTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C3AE32A011574F67CCFC709 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FIREfighterUITests/Pods-FIREfighterUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D5C30AF4E0ED5FA49D440C2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FIREfighter/Pods-FIREfighter-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0B346C69BA91DE59EE683C5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FIREfighter/Pods-FIREfighter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF06B149A984F8439BC99242 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C1D13CAE556912D2FD7877BA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FIREfighterTests/Pods-FIREfighterTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D31118902EC846EFE7703CE3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4AB4FA531D2425F0006E6632 /* Sources */ = {
@@ -562,8 +741,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -608,8 +789,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -628,6 +811,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -635,10 +819,12 @@
 		};
 		4AB4FA841D2425F0006E6632 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFB3F36E0B4B856C9AE5068F /* Pods-FIREfighter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8XA7DXVZNT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -646,7 +832,10 @@
 				INFOPLIST_FILE = FIREfighter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.GarbageGames.fireFIGHTERx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -657,10 +846,12 @@
 		};
 		4AB4FA851D2425F0006E6632 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2FFD924C55C5A1206942D31 /* Pods-FIREfighter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8XA7DXVZNT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -668,7 +859,10 @@
 				INFOPLIST_FILE = FIREfighter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.GarbageGames.fireFIGHTERx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -679,6 +873,7 @@
 		};
 		4AB4FA871D2425F0006E6632 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA878F0DCFC4615FCF75B3BB /* Pods-FIREfighterTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -693,6 +888,7 @@
 		};
 		4AB4FA881D2425F0006E6632 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 624512D5EAD99471FF78E6FA /* Pods-FIREfighterTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = FIREfighterTests/Info.plist;
@@ -706,6 +902,7 @@
 		};
 		4AB4FA8A1D2425F0006E6632 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54D53F0719098C9EEA98E3A5 /* Pods-FIREfighterUITests.debug.xcconfig */;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = FIREfighterUITests/Info.plist;
@@ -719,6 +916,7 @@
 		};
 		4AB4FA8B1D2425F0006E6632 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83ED39E729A2147EB2856CFC /* Pods-FIREfighterUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = FIREfighterUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
