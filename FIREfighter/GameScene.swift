@@ -609,7 +609,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         obstacleLayer.position.y -= scrollSpeed * CGFloat(fixedDelta)
         variableLayer.position.y -= scrollSpeed * CGFloat(fixedDelta)
         
-
         //add baby power ups every 300 points after 500
   
         if points >= 5000 && lastPoints < 5000 {
@@ -919,7 +918,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     /* Build data structure to be saved to firebase */
                     let saveProfile = [MainScene.playerProfile.name :
                         ["score" : MainScene.playerProfile.score,
-                         "id" : MainScene.playerProfile.facebookId ]]
+                         "id" : MainScene.playerProfile.facebookId]]
                     
                     /* Save to Firebase */
                     firebaseRef.updateChildValues(saveProfile, withCompletionBlock: {
@@ -949,8 +948,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     })
                     
                 }
-            }
-            else {
+            } else {
                 var y = self.highScoreLabel.position.y - 60
                 for index in stride(from: self.topScores.count - 1, through: 0, by: -1) {
                     print("\n\n\n\(index)\n\n\n")
